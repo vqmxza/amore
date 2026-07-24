@@ -22,7 +22,6 @@
     --dark: #2a0a1a;
     --night: #0d0510;
   }
-
   * {
     box-sizing: border-box;
     margin: 0;
@@ -30,7 +29,6 @@
     -webkit-tap-highlight-color: transparent;
     image-rendering: pixelated;
   }
-
   html, body {
     height: 100%;
     overflow: hidden;
@@ -41,12 +39,10 @@
     touch-action: manipulation;
     font-size: 10px;
   }
-
   body.night {
     background: #0d0510;
     color: #ffb3c6;
   }
-
   body::after {
     content: "";
     position: fixed;
@@ -70,7 +66,6 @@
       rgba(0,0,0,0.15) 4px
     );
   }
-
   .header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -85,14 +80,12 @@
     border-bottom-color: #ff6b9d;
     box-shadow: 0 4px 0 #4a1a30;
   }
-
   .title-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
   }
-
   .app-title {
     font-size: 11px;
     color: #e83e8c;
@@ -103,7 +96,6 @@
     color: #ff9ec0;
     text-shadow: 2px 2px 0 #5a1a3a;
   }
-
   .coins {
     background: #fff;
     border: 3px solid #ff6b9d;
@@ -117,13 +109,11 @@
     color: #ffb3c6;
     box-shadow: 3px 3px 0 #4a1a30;
   }
-
   .stats {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 6px;
   }
-
   .stat {
     background: #fff;
     border: 3px solid #ff6b9d;
@@ -135,7 +125,6 @@
     border-color: #ff6b9d;
     box-shadow: 2px 2px 0 #4a1a30;
   }
-
   .stat-label {
     display: flex;
     justify-content: space-between;
@@ -144,22 +133,19 @@
     color: #c2185b;
   }
   body.night .stat-label { color: #ff9ec0; }
-
   .bar-bg {
     height: 10px;
     background: #ffd0e0;
     border: 2px solid #ff6b9d;
   }
   body.night .bar-bg { background: #3a1a2a; }
-
   .bar-fill {
     height: 100%;
     transition: width 0.3s steps(8);
   }
   .bar-hunger { background: #ff9a3c; box-shadow: inset -2px -2px 0 #e07020; }
-  .bar-happy  { background: #ff6b9d; box-shadow: inset -2px -2px 0 #d04070; }
+  .bar-happy { background: #ff6b9d; box-shadow: inset -2px -2px 0 #d04070; }
   .bar-energy { background: #5ac8ff; box-shadow: inset -2px -2px 0 #3090d0; }
-
   .main {
     position: fixed;
     top: 130px;
@@ -175,7 +161,6 @@
   body.night .main {
     background: radial-gradient(ellipse at center, #1a0a18 0%, #0d0510 70%);
   }
-
   .stars {
     display: none;
     position: absolute;
@@ -194,7 +179,6 @@
     0%,100% { opacity: 1; }
     50% { opacity: 0.3; }
   }
-
   .pet-area {
     position: relative;
     width: 100%;
@@ -203,7 +187,6 @@
     flex-direction: column;
     align-items: center;
   }
-
   .speech {
     position: absolute;
     top: -5px;
@@ -241,7 +224,6 @@
     box-shadow: 4px 4px 0 #4a1a30;
   }
   body.night .speech::after { border-top-color: #ff6b9d; }
-
   .pet-container {
     position: relative;
     width: 200px;
@@ -252,7 +234,6 @@
     cursor: pointer;
     margin-top: 36px;
   }
-
   .pet-img {
     width: 180px;
     height: 180px;
@@ -263,27 +244,24 @@
     user-select: none;
     -webkit-user-drag: none;
   }
-
   .pet-container.bounce .pet-img {
     animation: bounce 0.45s steps(6);
   }
   @keyframes bounce {
-    0%   { transform: scale(1) translateY(0); }
-    25%  { transform: scale(1.15) translateY(-28px); }
-    50%  { transform: scale(0.92) translateY(0); }
-    75%  { transform: scale(1.08) translateY(-12px); }
+    0% { transform: scale(1) translateY(0); }
+    25% { transform: scale(1.15) translateY(-28px); }
+    50% { transform: scale(0.92) translateY(0); }
+    75% { transform: scale(1.08) translateY(-12px); }
     100% { transform: scale(1) translateY(0); }
   }
-
   .pet-container.sleeping .pet-img {
     filter: brightness(0.55) drop-shadow(0 0 12px #6b5cff);
     animation: sleepBob 2.5s steps(4) infinite;
   }
   @keyframes sleepBob {
     0%,100% { transform: translateY(0); }
-    50%     { transform: translateY(8px); }
+    50% { transform: translateY(8px); }
   }
-
   .zzz {
     position: absolute;
     top: 8px;
@@ -299,9 +277,8 @@
   }
   @keyframes zzzFloat {
     0%,100% { transform: translateY(0); opacity: 1; }
-    50%     { transform: translateY(-14px); opacity: 0.5; }
+    50% { transform: translateY(-14px); opacity: 0.5; }
   }
-
   .heart-float {
     position: absolute;
     font-size: 16px;
@@ -310,10 +287,9 @@
     z-index: 30;
   }
   @keyframes floatUp {
-    0%   { opacity: 1; transform: translateY(0) scale(1); }
+    0% { opacity: 1; transform: translateY(0) scale(1); }
     100% { opacity: 0; transform: translateY(-70px) scale(1.5); }
   }
-
   .level-badge {
     margin-top: 14px;
     background: #ff6b9d;
@@ -327,7 +303,6 @@
     background: #e83e8c;
     box-shadow: 3px 3px 0 #4a1a30;
   }
-
   .bottom-bar {
     position: fixed;
     bottom: 0; left: 0; right: 0;
@@ -344,7 +319,6 @@
     border-top-color: #ff6b9d;
     box-shadow: 0 -4px 0 #4a1a30;
   }
-
   .action-btn {
     display: flex;
     flex-direction: column;
@@ -378,7 +352,6 @@
     color: #fff;
     box-shadow: 3px 3px 0 #c2185b;
   }
-
   .overlay {
     position: fixed;
     inset: 0;
@@ -395,7 +368,6 @@
     opacity: 1;
     pointer-events: auto;
   }
-
   .modal {
     background: #fff5f8;
     border: 4px solid #ff6b9d;
@@ -412,7 +384,6 @@
     border-color: #ff6b9d;
     box-shadow: 6px 6px 0 #4a1a30;
   }
-
   .modal h2 {
     font-size: 11px;
     margin-bottom: 14px;
@@ -421,7 +392,6 @@
     line-height: 1.4;
   }
   body.night .modal h2 { color: #ff9ec0; }
-
   .modal-close {
     position: absolute;
     top: 8px;
@@ -439,13 +409,11 @@
     justify-content: center;
     box-shadow: 2px 2px 0 #ff9ec0;
   }
-
   .food-grid, .game-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
   }
-
   .food-item, .game-item {
     background: #fff;
     border: 3px solid #ff6b9d;
@@ -471,7 +439,6 @@
   .food-name { font-size: 7px; line-height: 1.3; margin-bottom: 3px; }
   .food-price { font-size: 7px; color: #e83e8c; }
   .food-effect { font-size: 6px; margin-top: 3px; opacity: 0.8; line-height: 1.3; }
-
   .game-screen {
     position: fixed;
     inset: 0;
@@ -483,7 +450,6 @@
   }
   body.night .game-screen { background: #0d0510; }
   .game-screen.active { display: flex; }
-
   .game-hud {
     width: 100%;
     padding: 12px 12px;
@@ -500,14 +466,12 @@
     background: #1a0a14;
     border-bottom-color: #ff6b9d;
   }
-
   .game-area {
     flex: 1;
     width: 100%;
     position: relative;
     overflow: hidden;
   }
-
   /* FIXED CATCH HEARTS - larger hit area */
   .falling-heart {
     position: absolute;
@@ -526,7 +490,6 @@
   .falling-heart span {
     pointer-events: none;
   }
-
   .game-over-panel {
     position: absolute;
     inset: 0;
@@ -552,7 +515,6 @@
     line-height: 1.7;
     margin-bottom: 18px;
   }
-
   .btn-primary {
     background: #ff6b9d;
     color: #fff;
@@ -567,7 +529,6 @@
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0 #ff9ec0;
   }
-
   .memory-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -596,7 +557,6 @@
     background: #2a1220;
     box-shadow: 3px 3px 0 #4a1a30;
   }
-
   /* BUBBLE POP */
   .bubble {
     position: absolute;
@@ -613,10 +573,9 @@
     animation: bubbleFloat 4s linear forwards;
   }
   @keyframes bubbleFloat {
-    0%   { transform: translateY(0) scale(1); }
+    0% { transform: translateY(0) scale(1); }
     100% { transform: translateY(-120vh) scale(1.1); }
   }
-
   /* WHACK */
   .whack-hole {
     width: 70px;
@@ -643,7 +602,6 @@
   .whack-hole.show .mole {
     transform: translateY(0);
   }
-
   .kiss-overlay {
     position: fixed;
     inset: 0;
@@ -662,11 +620,10 @@
     text-shadow: 4px 4px 0 #c2185b;
   }
   @keyframes kissPop {
-    0%   { transform: scale(0); opacity: 0; }
-    40%  { transform: scale(1.4); opacity: 1; }
+    0% { transform: scale(0); opacity: 0; }
+    40% { transform: scale(1.4); opacity: 1; }
     100% { transform: scale(1.8); opacity: 0; }
   }
-
   .toast {
     position: fixed;
     bottom: calc(100px + env(safe-area-inset-bottom, 8px));
@@ -690,33 +647,10 @@
     opacity: 1;
     transform: translateX(-50%) translateY(0);
   }
-
-  .music-btn {
-    position: fixed;
-    top: calc(8px + env(safe-area-inset-top, 12px));
-    right: 10px;
-    z-index: 150;
-    background: #fff;
-    border: 3px solid #ff6b9d;
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 2px 0 #ff9ec0;
-    cursor: pointer;
-  }
-  body.night .music-btn {
-    background: #2a1220;
-    box-shadow: 2px 2px 0 #4a1a30;
-  }
 </style>
 </head>
 <body>
 <div class="stars" id="stars"></div>
-<button class="music-btn" id="musicBtn" title="Musica">🎵</button>
-
 <header class="header">
   <div class="title-row">
     <div class="app-title">Emma 💖 Giulia</div>
@@ -737,7 +671,6 @@
     </div>
   </div>
 </header>
-
 <main class="main">
   <div class="pet-area">
     <div class="speech" id="speech">Ciao amore! 💕</div>
@@ -750,14 +683,12 @@
     <div class="level-badge">LV.<span id="level">1</span> XP<span id="xp">0</span>/100</div>
   </div>
 </main>
-
 <nav class="bottom-bar">
   <button class="action-btn" id="btnFood">🍕<span>Cibo</span></button>
   <button class="action-btn" id="btnPlay">🎮<span>Gioca</span></button>
   <button class="action-btn" id="btnKiss">💋<span>Bacio</span></button>
   <button class="action-btn" id="btnSleep">🌙<span>Nanna</span></button>
 </nav>
-
 <div class="overlay" id="foodOverlay">
   <div class="modal">
     <button class="modal-close" id="closeFood">X</button>
@@ -765,7 +696,6 @@
     <div class="food-grid" id="foodGrid"></div>
   </div>
 </div>
-
 <div class="overlay" id="gamesOverlay">
   <div class="modal">
     <button class="modal-close" id="closeGames">X</button>
@@ -773,7 +703,6 @@
     <div class="game-grid" id="gameGrid"></div>
   </div>
 </div>
-
 <!-- CATCH -->
 <div class="game-screen" id="catchGame">
   <div class="game-hud">
@@ -788,7 +717,6 @@
     <button class="btn-primary" id="closeCatchBtn">OK</button>
   </div>
 </div>
-
 <!-- MEMORY -->
 <div class="game-screen" id="memoryGame">
   <div class="game-hud">
@@ -805,7 +733,6 @@
     <button class="btn-primary" id="closeMemBtn">OK</button>
   </div>
 </div>
-
 <!-- BUBBLE -->
 <div class="game-screen" id="bubbleGame">
   <div class="game-hud">
@@ -820,7 +747,6 @@
     <button class="btn-primary" id="closeBubbleBtn">OK</button>
   </div>
 </div>
-
 <!-- WHACK -->
 <div class="game-screen" id="whackGame">
   <div class="game-hud">
@@ -837,12 +763,10 @@
     <button class="btn-primary" id="closeWhackBtn">OK</button>
   </div>
 </div>
-
 <div class="kiss-overlay" id="kissOverlay">
   <div class="big-kiss">💋</div>
 </div>
 <div class="toast" id="toast"></div>
-
 <script>
 const DEFAULT = {
   coins: 150, hunger: 85, happy: 85, energy: 90,
@@ -850,31 +774,25 @@ const DEFAULT = {
   unlockedFoods: ['latte','pesce','torta','cookie','frutta'],
   lastTick: Date.now(), sleeping: false
 };
-
 let state = loadState();
 let speechTimeout = null;
 let isSleeping = !!state.sleeping;
 let autoCloseTimer = null;
-let musicOn = false;
-let audioCtx = null;
-let musicInterval = null;
-
 const FOODS = {
-  latte:      { emoji:'🥛', name:'Latte',      price:8,  hunger:18, happy:6,  energy:0,  unlock:1 },
-  pesce:      { emoji:'🐟', name:'Pesce',      price:14, hunger:28, happy:10, energy:4,  unlock:1 },
-  torta:      { emoji:'🍰', name:'Torta',      price:20, hunger:22, happy:22, energy:0,  unlock:1 },
-  cookie:     { emoji:'🍪', name:'Biscotto',   price:10, hunger:12, happy:16, energy:0,  unlock:1 },
-  frutta:     { emoji:'🍓', name:'Fragole',    price:12, hunger:14, happy:12, energy:6,  unlock:1 },
-  yogurt:     { emoji:'🍦', name:'Yogurt',     price:15, hunger:16, happy:14, energy:8,  unlock:2 },
-  pollo:      { emoji:'🍗', name:'Pollo',      price:22, hunger:32, happy:12, energy:10, unlock:3 },
-  salmone:    { emoji:'🍣', name:'Salmone',    price:28, hunger:38, happy:14, energy:10, unlock:3 },
-  cioccolata: { emoji:'🍫', name:'Ciocco',     price:16, hunger:10, happy:24, energy:0,  unlock:4 },
-  rainbow:    { emoji:'🌈', name:'Torta Arc.', price:35, hunger:25, happy:30, energy:5,  unlock:5 },
-  sushi:      { emoji:'🍱', name:'Sushi',      price:40, hunger:42, happy:28, energy:12, unlock:6 },
-  miele:      { emoji:'🍯', name:'Miele',      price:18, hunger:15, happy:20, energy:15, unlock:7 },
-  stella:     { emoji:'⭐', name:'Cibo Stella',price:50, hunger:45, happy:35, energy:20, unlock:8 }
+  latte: { emoji:'🥛', name:'Latte', price:8, hunger:18, happy:6, energy:0, unlock:1 },
+  pesce: { emoji:'🐟', name:'Pesce', price:14, hunger:28, happy:10, energy:4, unlock:1 },
+  torta: { emoji:'🍰', name:'Torta', price:20, hunger:22, happy:22, energy:0, unlock:1 },
+  cookie: { emoji:'🍪', name:'Biscotto', price:10, hunger:12, happy:16, energy:0, unlock:1 },
+  frutta: { emoji:'🍓', name:'Fragole', price:12, hunger:14, happy:12, energy:6, unlock:1 },
+  yogurt: { emoji:'🍦', name:'Yogurt', price:15, hunger:16, happy:14, energy:8, unlock:2 },
+  pollo: { emoji:'🍗', name:'Pollo', price:22, hunger:32, happy:12, energy:10, unlock:3 },
+  salmone: { emoji:'🍣', name:'Salmone', price:28, hunger:38, happy:14, energy:10, unlock:3 },
+  cioccolata: { emoji:'🍫', name:'Ciocco', price:16, hunger:10, happy:24, energy:0, unlock:4 },
+  rainbow: { emoji:'🌈', name:'Torta Arc.', price:35, hunger:25, happy:30, energy:5, unlock:5 },
+  sushi: { emoji:'🍱', name:'Sushi', price:40, hunger:42, happy:28, energy:12, unlock:6 },
+  miele: { emoji:'🍯', name:'Miele', price:18, hunger:15, happy:20, energy:15, unlock:7 },
+  stella: { emoji:'⭐', name:'Cibo Stella',price:50, hunger:45, happy:35, energy:20, unlock:8 }
 };
-
 const PHRASES = {
   happy: [
     "Ti amo tantissimo!! 💕","Sei la mia preferita 🌸","Che giornata bellissima!",
@@ -902,7 +820,6 @@ const PHRASES = {
     "Nanna time... zzz","Sogni rosa per te","Dormo tra le nuvole 💕"
   ]
 };
-
 function loadState() {
   try {
     const s = localStorage.getItem('emmaGiuliaPet_v3');
@@ -911,7 +828,7 @@ function loadState() {
       const now = Date.now();
       const elapsed = Math.min((now - (p.lastTick || now)) / 1000, 28800);
       p.hunger = Math.max(0, (p.hunger||85) - elapsed * 0.012);
-      p.happy  = Math.max(0, (p.happy||85)  - elapsed * 0.010);
+      p.happy = Math.max(0, (p.happy||85) - elapsed * 0.010);
       p.energy = Math.max(0, (p.energy||90) - elapsed * 0.008);
       p.lastTick = now;
       return Object.assign({}, DEFAULT, p);
@@ -919,35 +836,30 @@ function loadState() {
   } catch(e) {}
   return Object.assign({}, DEFAULT);
 }
-
 function saveState() {
   state.lastTick = Date.now();
   state.sleeping = isSleeping;
   localStorage.setItem('emmaGiuliaPet_v3', JSON.stringify(state));
 }
-
 function haptic(ms) {
   if (navigator.vibrate) navigator.vibrate(ms || 12);
 }
-
 function showToast(msg, dur) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), dur || 2200);
 }
-
 function updateUI() {
   document.getElementById('coins').textContent = Math.floor(state.coins);
   document.getElementById('hungerVal').textContent = Math.round(state.hunger);
   document.getElementById('happyVal').textContent = Math.round(state.happy);
   document.getElementById('energyVal').textContent = Math.round(state.energy);
   document.getElementById('hungerBar').style.width = Math.max(0, state.hunger) + '%';
-  document.getElementById('happyBar').style.width  = Math.max(0, state.happy)  + '%';
+  document.getElementById('happyBar').style.width = Math.max(0, state.happy) + '%';
   document.getElementById('energyBar').style.width = Math.max(0, state.energy) + '%';
   document.getElementById('level').textContent = state.level;
   document.getElementById('xp').textContent = state.xp;
-
   const cont = document.getElementById('petContainer');
   const btn = document.getElementById('btnSleep');
   if (isSleeping) {
@@ -960,7 +872,6 @@ function updateUI() {
     btn.classList.remove('active');
   }
 }
-
 function addXP(n) {
   state.xp += n;
   let leveled = false;
@@ -981,7 +892,6 @@ function addXP(n) {
   saveState();
   updateUI();
 }
-
 function showSpeech(txt) {
   const el = document.getElementById('speech');
   el.textContent = txt;
@@ -989,65 +899,13 @@ function showSpeech(txt) {
   clearTimeout(speechTimeout);
   speechTimeout = setTimeout(() => el.classList.remove('show'), 3200);
 }
-
 function pickPhrase() {
   if (isSleeping) return PHRASES.sleep[Math.floor(Math.random()*PHRASES.sleep.length)];
   if (state.hunger < 28) return PHRASES.hungry[Math.floor(Math.random()*PHRASES.hungry.length)];
   if (state.energy < 28) return PHRASES.tired[Math.floor(Math.random()*PHRASES.tired.length)];
-  if (state.happy < 32)  return PHRASES.sad[Math.floor(Math.random()*PHRASES.sad.length)];
+  if (state.happy < 32) return PHRASES.sad[Math.floor(Math.random()*PHRASES.sad.length)];
   return PHRASES.happy[Math.floor(Math.random()*PHRASES.happy.length)];
 }
-
-/* ===== MUSIC (chiptune semplice) ===== */
-function initAudio() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-}
-
-function playNote(freq, dur, type) {
-  if (!audioCtx || !musicOn) return;
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.type = type || 'square';
-  osc.frequency.value = freq;
-  gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  osc.start();
-  osc.stop(audioCtx.currentTime + dur);
-}
-
-const MELODY = [
-  [523,0.18],[587,0.18],[659,0.18],[698,0.18],[784,0.25],[698,0.18],[659,0.18],[587,0.18],
-  [523,0.18],[587,0.18],[659,0.18],[523,0.35],[0,0.1],
-  [392,0.18],[440,0.18],[494,0.18],[523,0.25],[494,0.18],[440,0.18],[392,0.35]
-];
-
-function startMusic() {
-  initAudio();
-  if (audioCtx.state === 'suspended') audioCtx.resume();
-  let i = 0;
-  musicInterval = setInterval(function() {
-    if (!musicOn) return;
-    const n = MELODY[i % MELODY.length];
-    if (n[0] > 0) playNote(n[0], n[1], 'square');
-    i++;
-  }, 220);
-}
-
-function stopMusic() {
-  clearInterval(musicInterval);
-  musicInterval = null;
-}
-
-document.getElementById('musicBtn').addEventListener('click', function() {
-  musicOn = !musicOn;
-  this.textContent = musicOn ? '🔊' : '🎵';
-  if (musicOn) startMusic();
-  else stopMusic();
-  haptic(8);
-});
-
 /* ===== PET ===== */
 document.getElementById('petContainer').addEventListener('click', function() {
   if (isSleeping) {
@@ -1065,7 +923,7 @@ document.getElementById('petContainer').addEventListener('click', function() {
       h.className = 'heart-float';
       h.textContent = ['💖','💕','💗','💓','💘'][Math.floor(Math.random()*5)];
       h.style.left = (30 + Math.random()*140) + 'px';
-      h.style.top  = (70 + Math.random()*50) + 'px';
+      h.style.top = (70 + Math.random()*50) + 'px';
       cont.appendChild(h);
       setTimeout(function(){ h.remove(); }, 1100);
     }, i * 70);
@@ -1076,13 +934,11 @@ document.getElementById('petContainer').addEventListener('click', function() {
   saveState();
   updateUI();
 });
-
 /* ===== FOOD ===== */
 document.getElementById('btnFood').addEventListener('click', openFood);
 document.getElementById('closeFood').addEventListener('click', function() {
   document.getElementById('foodOverlay').classList.remove('show');
 });
-
 function openFood() {
   if (isSleeping) { showToast('Sta dormendo... 💤'); return; }
   haptic();
@@ -1104,7 +960,6 @@ function openFood() {
   });
   document.getElementById('foodOverlay').classList.add('show');
 }
-
 function feed(id) {
   const f = FOODS[id];
   if (state.coins < f.price) {
@@ -1115,16 +970,15 @@ function feed(id) {
   haptic(18);
   state.coins -= f.price;
   state.hunger = Math.min(100, state.hunger + f.hunger);
-  state.happy  = Math.min(100, state.happy  + f.happy);
+  state.happy = Math.min(100, state.happy + f.happy);
   state.energy = Math.min(100, state.energy + (f.energy || 0));
   addXP(6);
   showSpeech('Buono il ' + f.name + '! ' + f.emoji);
-  showToast('+' + f.hunger + ' Fame  +' + f.happy + ' Felicità');
+  showToast('+' + f.hunger + ' Fame +' + f.happy + ' Felicità');
   saveState();
   updateUI();
   document.getElementById('foodOverlay').classList.remove('show');
 }
-
 /* ===== KISS ===== */
 document.getElementById('btnKiss').addEventListener('click', function() {
   if (isSleeping) { showToast('Ssshh... dorme 💤'); return; }
@@ -1139,7 +993,7 @@ document.getElementById('btnKiss').addEventListener('click', function() {
       h.className = 'heart-float';
       h.textContent = ['💖','💕','💗','💓','💘','❤️'][Math.floor(Math.random()*6)];
       h.style.left = (Math.random()*85) + '%';
-      h.style.top  = (25 + Math.random()*45) + '%';
+      h.style.top = (25 + Math.random()*45) + '%';
       h.style.fontSize = (14 + Math.random()*14) + 'px';
       main.appendChild(h);
       setTimeout(function(){ h.remove(); }, 1100);
@@ -1151,7 +1005,6 @@ document.getElementById('btnKiss').addEventListener('click', function() {
   saveState();
   updateUI();
 });
-
 /* ===== SLEEP ===== */
 document.getElementById('btnSleep').addEventListener('click', function() {
   haptic();
@@ -1166,19 +1019,16 @@ document.getElementById('btnSleep').addEventListener('click', function() {
   saveState();
   updateUI();
 });
-
 /* ===== GAMES MENU ===== */
 document.getElementById('btnPlay').addEventListener('click', openGames);
 document.getElementById('closeGames').addEventListener('click', function() {
   document.getElementById('gamesOverlay').classList.remove('show');
 });
-
 function openGames() {
   if (isSleeping) { showToast('Sta dormendo... 💤'); return; }
   haptic();
   const grid = document.getElementById('gameGrid');
   grid.innerHTML = '';
-
   const games = [
     { emoji:'💖', name:'Acchiappa<br>Cuori', fn: startCatchGame },
     { emoji:'🃏', name:'Memory<br>Cuori', fn: startMemoryGame },
@@ -1194,13 +1044,10 @@ function openGames() {
   });
   document.getElementById('gamesOverlay').classList.add('show');
 }
-
 /* ===== CATCH HEARTS (FIXED) ===== */
 let catchScore = 0, catchTimer = null, catchSpawn = null, catchTimeLeft = 30, catchEnded = false;
-
 document.getElementById('exitCatch').addEventListener('click', function(){ endCatchGame(false); });
 document.getElementById('closeCatchBtn').addEventListener('click', closeCatchGame);
-
 function startCatchGame() {
   document.getElementById('gamesOverlay').classList.remove('show');
   catchScore = 0; catchTimeLeft = 30; catchEnded = false;
@@ -1210,7 +1057,6 @@ function startCatchGame() {
   document.getElementById('catchArea').innerHTML = '';
   document.getElementById('catchGame').classList.add('active');
   haptic();
-
   catchTimer = setInterval(function() {
     catchTimeLeft--;
     document.getElementById('catchTime').textContent = catchTimeLeft;
@@ -1218,7 +1064,6 @@ function startCatchGame() {
   }, 1000);
   catchSpawn = setInterval(spawnHeart, 480);
 }
-
 function spawnHeart() {
   if (catchEnded) return;
   const area = document.getElementById('catchArea');
@@ -1231,11 +1076,9 @@ function spawnHeart() {
   h.style.transition = 'transform ' + dur + 's linear';
   h.style.transform = 'translateY(-60px)';
   area.appendChild(h);
-
   // force reflow then fall
   void h.offsetWidth;
   h.style.transform = 'translateY(110vh) rotate(180deg)';
-
   const hit = function(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -1251,10 +1094,8 @@ function spawnHeart() {
   };
   h.addEventListener('touchstart', hit, { passive: false });
   h.addEventListener('mousedown', hit);
-
   setTimeout(function(){ if (h.parentNode && !h._hit) h.remove(); }, (dur * 1000) + 200);
 }
-
 function endCatchGame(finished) {
   if (catchEnded) return;
   catchEnded = true;
@@ -1275,20 +1116,16 @@ function endCatchGame(finished) {
   clearTimeout(autoCloseTimer);
   autoCloseTimer = setTimeout(closeCatchGame, 3500);
 }
-
 function closeCatchGame() {
   clearTimeout(autoCloseTimer);
   document.getElementById('catchGame').classList.remove('active');
   document.getElementById('catchOver').classList.remove('show');
 }
-
 /* ===== MEMORY ===== */
 const MEM_EMOJIS = ['💖','💕','💗','💓','💘','❤️','💞','🌸'];
 let memFlipped = [], memMatched = 0, memMoves = 0, memLock = false, memEnded = false;
-
 document.getElementById('exitMem').addEventListener('click', function(){ endMemoryGame(false); });
 document.getElementById('closeMemBtn').addEventListener('click', closeMemoryGame);
-
 function startMemoryGame() {
   document.getElementById('gamesOverlay').classList.remove('show');
   memFlipped = []; memMatched = 0; memMoves = 0; memLock = false; memEnded = false;
@@ -1309,7 +1146,6 @@ function startMemoryGame() {
   document.getElementById('memoryGame').classList.add('active');
   haptic();
 }
-
 function flipCard(card) {
   if (memLock || memEnded || card.classList.contains('flipped') || card.classList.contains('matched')) return;
   haptic(6);
@@ -1337,7 +1173,6 @@ function flipCard(card) {
     }
   }
 }
-
 function endMemoryGame(won) {
   if (memEnded) return;
   memEnded = true;
@@ -1354,19 +1189,15 @@ function endMemoryGame(won) {
   clearTimeout(autoCloseTimer);
   autoCloseTimer = setTimeout(closeMemoryGame, 3500);
 }
-
 function closeMemoryGame() {
   clearTimeout(autoCloseTimer);
   document.getElementById('memoryGame').classList.remove('active');
   document.getElementById('memoryOver').classList.remove('show');
 }
-
 /* ===== BUBBLE POP ===== */
 let bubbleScore = 0, bubbleTimer = null, bubbleSpawn = null, bubbleTimeLeft = 25, bubbleEnded = false;
-
 document.getElementById('exitBubble').addEventListener('click', function(){ endBubbleGame(false); });
 document.getElementById('closeBubbleBtn').addEventListener('click', closeBubbleGame);
-
 function startBubbleGame() {
   document.getElementById('gamesOverlay').classList.remove('show');
   bubbleScore = 0; bubbleTimeLeft = 25; bubbleEnded = false;
@@ -1383,7 +1214,6 @@ function startBubbleGame() {
   }, 1000);
   bubbleSpawn = setInterval(spawnBubble, 600);
 }
-
 function spawnBubble() {
   if (bubbleEnded) return;
   const area = document.getElementById('bubbleArea');
@@ -1396,7 +1226,6 @@ function spawnBubble() {
   b.style.bottom = '-60px';
   b.textContent = ['💖','💕','🫧','💗','✨'][Math.floor(Math.random()*5)];
   b.style.animationDuration = (3.5 + Math.random() * 2) + 's';
-
   const hit = function(e) {
     e.preventDefault();
     if (bubbleEnded || b._hit) return;
@@ -1414,7 +1243,6 @@ function spawnBubble() {
   area.appendChild(b);
   setTimeout(function(){ if (b.parentNode && !b._hit) b.remove(); }, 6000);
 }
-
 function endBubbleGame(finished) {
   if (bubbleEnded) return;
   bubbleEnded = true;
@@ -1432,26 +1260,21 @@ function endBubbleGame(finished) {
   clearTimeout(autoCloseTimer);
   autoCloseTimer = setTimeout(closeBubbleGame, 3500);
 }
-
 function closeBubbleGame() {
   clearTimeout(autoCloseTimer);
   document.getElementById('bubbleGame').classList.remove('active');
   document.getElementById('bubbleOver').classList.remove('show');
 }
-
 /* ===== WHACK-A-CAT ===== */
 let whackScore = 0, whackTimer = null, whackSpawn = null, whackTimeLeft = 20, whackEnded = false, activeHole = -1;
-
 document.getElementById('exitWhack').addEventListener('click', function(){ endWhackGame(false); });
 document.getElementById('closeWhackBtn').addEventListener('click', closeWhackGame);
-
 function startWhackGame() {
   document.getElementById('gamesOverlay').classList.remove('show');
   whackScore = 0; whackTimeLeft = 20; whackEnded = false; activeHole = -1;
   document.getElementById('whackScore').textContent = '0';
   document.getElementById('whackTime').textContent = '20';
   document.getElementById('whackOver').classList.remove('show');
-
   const grid = document.getElementById('whackGrid');
   grid.innerHTML = '';
   for (let i = 0; i < 9; i++) {
@@ -1465,7 +1288,6 @@ function startWhackGame() {
   }
   document.getElementById('whackGame').classList.add('active');
   haptic();
-
   whackTimer = setInterval(function() {
     whackTimeLeft--;
     document.getElementById('whackTime').textContent = whackTimeLeft;
@@ -1473,7 +1295,6 @@ function startWhackGame() {
   }, 1000);
   whackSpawn = setInterval(showMole, 700);
 }
-
 function showMole() {
   if (whackEnded) return;
   const holes = document.querySelectorAll('.whack-hole');
@@ -1485,7 +1306,6 @@ function showMole() {
     activeHole = -1;
   }, 650);
 }
-
 function hitWhack(idx) {
   if (whackEnded || idx !== activeHole) return;
   haptic(12);
@@ -1494,7 +1314,6 @@ function hitWhack(idx) {
   document.querySelectorAll('.whack-hole')[idx].classList.remove('show');
   activeHole = -1;
 }
-
 function endWhackGame(finished) {
   if (whackEnded) return;
   whackEnded = true;
@@ -1512,29 +1331,26 @@ function endWhackGame(finished) {
   clearTimeout(autoCloseTimer);
   autoCloseTimer = setTimeout(closeWhackGame, 3500);
 }
-
 function closeWhackGame() {
   clearTimeout(autoCloseTimer);
   document.getElementById('whackGame').classList.remove('active');
   document.getElementById('whackOver').classList.remove('show');
 }
-
 /* ===== DECAY ===== */
 setInterval(function() {
   if (isSleeping) {
     state.energy = Math.min(100, state.energy + 0.4);
     state.hunger = Math.max(0, state.hunger - 0.035);
-    state.happy  = Math.max(0, state.happy  - 0.025);
+    state.happy = Math.max(0, state.happy - 0.025);
   } else {
     state.hunger = Math.max(0, state.hunger - 0.07);
-    state.happy  = Math.max(0, state.happy  - 0.055);
+    state.happy = Math.max(0, state.happy - 0.055);
     state.energy = Math.max(0, state.energy - 0.045);
   }
   if (Math.random() < 0.07 && !isSleeping) showSpeech(pickPhrase());
   saveState();
   updateUI();
 }, 2000);
-
 /* STARS */
 (function() {
   const box = document.getElementById('stars');
@@ -1542,15 +1358,13 @@ setInterval(function() {
     const s = document.createElement('div');
     s.className = 'star';
     s.style.left = Math.random()*100 + '%';
-    s.style.top  = Math.random()*100 + '%';
+    s.style.top = Math.random()*100 + '%';
     s.style.animationDelay = (Math.random()*2) + 's';
     box.appendChild(s);
   }
 })();
-
 updateUI();
 setTimeout(function(){ showSpeech(pickPhrase()); }, 600);
-
 let lastTouchEnd = 0;
 document.addEventListener('touchend', function(e) {
   const now = Date.now();
