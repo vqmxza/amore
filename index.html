@@ -69,7 +69,7 @@
   .header {
     position: fixed;
     top: 0; left: 0; right: 0;
-    padding: calc(12px + env(safe-area-inset-top, 16px)) 10px 10px;
+    padding: calc(10px + env(safe-area-inset-top, 16px)) 8px 8px;
     background: #fff0f5;
     border-bottom: 4px solid #ff6b9d;
     z-index: 100;
@@ -84,10 +84,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
   .app-title {
-    font-size: 11px;
+    font-size: 10px;
     color: #e83e8c;
     text-shadow: 2px 2px 0 #ffb3c6;
     letter-spacing: -1px;
@@ -99,8 +99,8 @@
   .coins {
     background: #fff;
     border: 3px solid #ff6b9d;
-    padding: 6px 10px;
-    font-size: 10px;
+    padding: 5px 8px;
+    font-size: 9px;
     color: #c2185b;
     box-shadow: 3px 3px 0 #ff9ec0;
   }
@@ -111,13 +111,13 @@
   }
   .stats {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 6px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 4px;
   }
   .stat {
     background: #fff;
     border: 3px solid #ff6b9d;
-    padding: 5px 6px;
+    padding: 4px 4px;
     box-shadow: 2px 2px 0 #ff9ec0;
   }
   body.night .stat {
@@ -128,13 +128,13 @@
   .stat-label {
     display: flex;
     justify-content: space-between;
-    font-size: 7px;
-    margin-bottom: 4px;
+    font-size: 6px;
+    margin-bottom: 3px;
     color: #c2185b;
   }
   body.night .stat-label { color: #ff9ec0; }
   .bar-bg {
-    height: 10px;
+    height: 8px;
     background: #ffd0e0;
     border: 2px solid #ff6b9d;
   }
@@ -146,10 +146,11 @@
   .bar-hunger { background: #ff9a3c; box-shadow: inset -2px -2px 0 #e07020; }
   .bar-happy { background: #ff6b9d; box-shadow: inset -2px -2px 0 #d04070; }
   .bar-energy { background: #5ac8ff; box-shadow: inset -2px -2px 0 #3090d0; }
+  .bar-cuddle { background: #c77dff; box-shadow: inset -2px -2px 0 #9b4dca; }
   .main {
     position: fixed;
-    top: 130px;
-    bottom: 95px;
+    top: 125px;
+    bottom: 100px;
     left: 0; right: 0;
     display: flex;
     flex-direction: column;
@@ -233,6 +234,16 @@
     justify-content: center;
     cursor: pointer;
     margin-top: 36px;
+    touch-action: none;
+  }
+  .pet-container.cuddle-mode {
+    outline: 4px dashed #c77dff;
+    outline-offset: 6px;
+    animation: cuddlePulse 1.2s steps(4) infinite;
+  }
+  @keyframes cuddlePulse {
+    0%,100% { outline-color: #c77dff; }
+    50% { outline-color: #ff6b9d; }
   }
   .pet-img {
     width: 180px;
@@ -243,6 +254,7 @@
     transition: transform 0.1s steps(2);
     user-select: none;
     -webkit-user-drag: none;
+    pointer-events: none;
   }
   .pet-container.bounce .pet-img {
     animation: bounce 0.45s steps(6);
@@ -303,10 +315,19 @@
     background: #e83e8c;
     box-shadow: 3px 3px 0 #4a1a30;
   }
+  .cuddle-hint {
+    font-size: 7px;
+    margin-top: 8px;
+    color: #c77dff;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .cuddle-hint.show { opacity: 1; }
   .bottom-bar {
     position: fixed;
     bottom: 0; left: 0; right: 0;
-    padding: 10px 8px calc(10px + env(safe-area-inset-bottom, 8px));
+    padding: 8px 4px calc(8px + env(safe-area-inset-bottom, 8px));
     background: #fff0f5;
     border-top: 4px solid #ff6b9d;
     display: flex;
@@ -323,14 +344,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 3px;
     background: #fff;
     border: 3px solid #ff6b9d;
     font-family: 'Press Start 2P', cursive;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
-    padding: 8px 6px 6px;
-    min-width: 68px;
+    padding: 6px 4px 5px;
+    min-width: 56px;
     color: #5a1a3a;
     box-shadow: 3px 3px 0 #ff9ec0;
     transition: transform 0.05s steps(2);
@@ -345,12 +366,18 @@
     box-shadow: 1px 1px 0 #ff9ec0;
   }
   .action-btn span {
-    font-size: 7px;
+    font-size: 6px;
   }
   .action-btn.active {
     background: #ff6b9d;
     color: #fff;
     box-shadow: 3px 3px 0 #c2185b;
+  }
+  .action-btn.cuddle-active {
+    background: #c77dff;
+    color: #fff;
+    border-color: #9b4dca;
+    box-shadow: 3px 3px 0 #7b3daa;
   }
   .overlay {
     position: fixed;
@@ -372,8 +399,8 @@
     background: #fff5f8;
     border: 4px solid #ff6b9d;
     width: 92%;
-    max-width: 320px;
-    max-height: 78vh;
+    max-width: 340px;
+    max-height: 85vh;
     overflow-y: auto;
     padding: 18px 14px;
     box-shadow: 6px 6px 0 #ff9ec0;
@@ -408,6 +435,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 2px 2px 0 #ff9ec0;
+    z-index: 10;
   }
   .food-grid, .game-grid {
     display: grid;
@@ -432,8 +460,9 @@
     box-shadow: 1px 1px 0 #ff9ec0;
   }
   .food-item.locked {
-    opacity: 0.4;
+    opacity: 0.45;
     filter: grayscale(1);
+    pointer-events: none;
   }
   .food-emoji { font-size: 22px; display: block; margin-bottom: 4px; }
   .food-name { font-size: 7px; line-height: 1.3; margin-bottom: 3px; }
@@ -472,7 +501,6 @@
     position: relative;
     overflow: hidden;
   }
-  /* FIXED CATCH HEARTS - larger hit area */
   .falling-heart {
     position: absolute;
     width: 56px;
@@ -487,9 +515,7 @@
     touch-action: manipulation;
     text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
   }
-  .falling-heart span {
-    pointer-events: none;
-  }
+  .falling-heart span { pointer-events: none; }
   .game-over-panel {
     position: absolute;
     inset: 0;
@@ -557,7 +583,6 @@
     background: #2a1220;
     box-shadow: 3px 3px 0 #4a1a30;
   }
-  /* BUBBLE POP */
   .bubble {
     position: absolute;
     border-radius: 50%;
@@ -576,7 +601,6 @@
     0% { transform: translateY(0) scale(1); }
     100% { transform: translateY(-120vh) scale(1.1); }
   }
-  /* WHACK */
   .whack-hole {
     width: 70px;
     height: 70px;
@@ -599,8 +623,70 @@
     transform: translateY(40px);
     pointer-events: none;
   }
-  .whack-hole.show .mole {
-    transform: translateY(0);
+  .whack-hole.show .mole { transform: translateY(0); }
+  .stroke-area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    touch-action: none;
+    position: relative;
+  }
+  .stroke-cat {
+    width: 160px;
+    height: 160px;
+    font-size: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    filter: drop-shadow(4px 6px 0 rgba(232,62,140,0.3));
+  }
+  .stroke-progress-bg {
+    width: 80%;
+    max-width: 260px;
+    height: 18px;
+    background: #ffd0e0;
+    border: 3px solid #ff6b9d;
+    margin-top: 20px;
+  }
+  .stroke-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #c77dff;
+    transition: width 0.1s steps(4);
+  }
+  .stroke-hint {
+    font-size: 8px;
+    margin-top: 12px;
+    text-align: center;
+    line-height: 1.5;
+    color: #e83e8c;
+  }
+  .draw-canvas-wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    touch-action: none;
+  }
+  #drawCanvas {
+    border: 4px solid #ff6b9d;
+    background: #fff;
+    box-shadow: 4px 4px 0 #ff9ec0;
+    touch-action: none;
+  }
+  body.night #drawCanvas { background: #2a1220; }
+  .draw-hint {
+    font-size: 8px;
+    margin-top: 10px;
+    text-align: center;
+    line-height: 1.5;
+    color: #e83e8c;
   }
   .kiss-overlay {
     position: fixed;
@@ -626,7 +712,7 @@
   }
   .toast {
     position: fixed;
-    bottom: calc(100px + env(safe-area-inset-bottom, 8px));
+    bottom: calc(105px + env(safe-area-inset-bottom, 8px));
     left: 50%;
     transform: translateX(-50%) translateY(16px);
     background: #2a0a1a;
@@ -646,6 +732,23 @@
   .toast.show {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+  }
+  /* MUSIC - Spotify embed */
+  .spotify-wrap {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 3px solid #ff6b9d;
+    box-shadow: 4px 4px 0 #ff9ec0;
+  }
+  body.night .spotify-wrap {
+    border-color: #ff6b9d;
+    box-shadow: 4px 4px 0 #4a1a30;
+  }
+  .spotify-wrap iframe {
+    display: block;
+    width: 100%;
+    border: none;
   }
 </style>
 </head>
@@ -669,6 +772,10 @@
       <div class="stat-label"><span>💤</span><span id="energyVal">90</span></div>
       <div class="bar-bg"><div class="bar-fill bar-energy" id="energyBar" style="width:90%"></div></div>
     </div>
+    <div class="stat">
+      <div class="stat-label"><span>🤗</span><span id="cuddleVal">60</span></div>
+      <div class="bar-bg"><div class="bar-fill bar-cuddle" id="cuddleBar" style="width:60%"></div></div>
+    </div>
   </div>
 </header>
 <main class="main">
@@ -681,13 +788,16 @@
       <div class="zzz">💤</div>
     </div>
     <div class="level-badge">LV.<span id="level">1</span> XP<span id="xp">0</span>/100</div>
+    <div class="cuddle-hint" id="cuddleHint">Trascina il dito sul gatto 🤗</div>
   </div>
 </main>
 <nav class="bottom-bar">
   <button class="action-btn" id="btnFood">🍕<span>Cibo</span></button>
   <button class="action-btn" id="btnPlay">🎮<span>Gioca</span></button>
+  <button class="action-btn" id="btnCuddle">🤗<span>Coccole</span></button>
   <button class="action-btn" id="btnKiss">💋<span>Bacio</span></button>
   <button class="action-btn" id="btnSleep">🌙<span>Nanna</span></button>
+  <button class="action-btn" id="btnMusic">🎵<span>Musica</span></button>
 </nav>
 <div class="overlay" id="foodOverlay">
   <div class="modal">
@@ -701,6 +811,15 @@
     <button class="modal-close" id="closeGames">X</button>
     <h2>🎮 GIOCHI</h2>
     <div class="game-grid" id="gameGrid"></div>
+  </div>
+</div>
+<div class="overlay" id="musicOverlay">
+  <div class="modal">
+    <button class="modal-close" id="closeMusic">X</button>
+    <h2>🎵 MUSICA</h2>
+    <div class="spotify-wrap">
+      <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1CwK1mp0tlLRZzJj5EGSzu?utm_source=generator&theme=0&si=2ed4115b46a0445d" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
   </div>
 </div>
 <!-- CATCH -->
@@ -763,13 +882,52 @@
     <button class="btn-primary" id="closeWhackBtn">OK</button>
   </div>
 </div>
+<!-- STROKE GAME -->
+<div class="game-screen" id="strokeGame">
+  <div class="game-hud">
+    <div>🤗<span id="strokeScore">0</span>%</div>
+    <div>⏱️<span id="strokeTime">20</span>s</div>
+    <button class="btn-primary" style="padding:8px 12px;font-size:8px" id="exitStroke">ESCI</button>
+  </div>
+  <div class="game-area">
+    <div class="stroke-area" id="strokeArea">
+      <div class="stroke-cat" id="strokeCat">🐱</div>
+      <div class="stroke-progress-bg"><div class="stroke-progress-fill" id="strokeFill"></div></div>
+      <div class="stroke-hint">Trascina il dito sul micio<br>per accarezzarlo!</div>
+    </div>
+  </div>
+  <div class="game-over-panel" id="strokeOver">
+    <h2>FINE!</h2>
+    <p>Coccole: <strong id="strokeFinal">0</strong>%<br>Monete: +<strong id="strokeCoins">0</strong> 🪙</p>
+    <button class="btn-primary" id="closeStrokeBtn">OK</button>
+  </div>
+</div>
+<!-- DRAW HEART -->
+<div class="game-screen" id="drawGame">
+  <div class="game-hud">
+    <div>❤️<span id="drawScore">0</span>%</div>
+    <div>⏱️<span id="drawTime">25</span>s</div>
+    <button class="btn-primary" style="padding:8px 12px;font-size:8px" id="exitDraw">ESCI</button>
+  </div>
+  <div class="game-area">
+    <div class="draw-canvas-wrap">
+      <canvas id="drawCanvas" width="280" height="280"></canvas>
+      <div class="draw-hint">Disegna un cuore trascinando<br>il dito! Segui la linea rosa</div>
+    </div>
+  </div>
+  <div class="game-over-panel" id="drawOver">
+    <h2>FINE!</h2>
+    <p>Precisione: <strong id="drawFinal">0</strong>%<br>Monete: +<strong id="drawCoins">0</strong> 🪙</p>
+    <button class="btn-primary" id="closeDrawBtn">OK</button>
+  </div>
+</div>
 <div class="kiss-overlay" id="kissOverlay">
   <div class="big-kiss">💋</div>
 </div>
 <div class="toast" id="toast"></div>
 <script>
 const DEFAULT = {
-  coins: 150, hunger: 85, happy: 85, energy: 90,
+  coins: 150, hunger: 85, happy: 85, energy: 90, cuddle: 60,
   level: 1, xp: 0,
   unlockedFoods: ['latte','pesce','torta','cookie','frutta'],
   lastTick: Date.now(), sleeping: false
@@ -778,6 +936,10 @@ let state = loadState();
 let speechTimeout = null;
 let isSleeping = !!state.sleeping;
 let autoCloseTimer = null;
+let cuddleMode = false;
+let isCuddling = false;
+let lastCuddleX = 0, lastCuddleY = 0;
+
 const FOODS = {
   latte: { emoji:'🥛', name:'Latte', price:8, hunger:18, happy:6, energy:0, unlock:1 },
   pesce: { emoji:'🐟', name:'Pesce', price:14, hunger:28, happy:10, energy:4, unlock:1 },
@@ -793,6 +955,7 @@ const FOODS = {
   miele: { emoji:'🍯', name:'Miele', price:18, hunger:15, happy:20, energy:15, unlock:7 },
   stella: { emoji:'⭐', name:'Cibo Stella',price:50, hunger:45, happy:35, energy:20, unlock:8 }
 };
+
 const PHRASES = {
   happy: [
     "Ti amo tantissimo!! 💕","Sei la mia preferita 🌸","Che giornata bellissima!",
@@ -818,11 +981,16 @@ const PHRASES = {
   sleep: [
     "Zzz... sogni d'amore 💤","Buonanotte principessa...","Sto sognando te... 🌙",
     "Nanna time... zzz","Sogni rosa per te","Dormo tra le nuvole 💕"
+  ],
+  cuddle: [
+    "Prrrrr... più forteee 🤗","Che belle coccole!!","Mi sciolgo di piacere 😻",
+    "Continua continua!!","Le tue mani sono magiche","Fusa a mille!! 💖"
   ]
 };
+
 function loadState() {
   try {
-    const s = localStorage.getItem('emmaGiuliaPet_v3');
+    const s = localStorage.getItem('emmaGiuliaPet_v4');
     if (s) {
       const p = JSON.parse(s);
       const now = Date.now();
@@ -830,6 +998,7 @@ function loadState() {
       p.hunger = Math.max(0, (p.hunger||85) - elapsed * 0.012);
       p.happy = Math.max(0, (p.happy||85) - elapsed * 0.010);
       p.energy = Math.max(0, (p.energy||90) - elapsed * 0.008);
+      p.cuddle = Math.max(0, (p.cuddle||60) - elapsed * 0.006);
       p.lastTick = now;
       return Object.assign({}, DEFAULT, p);
     }
@@ -839,7 +1008,7 @@ function loadState() {
 function saveState() {
   state.lastTick = Date.now();
   state.sleeping = isSleeping;
-  localStorage.setItem('emmaGiuliaPet_v3', JSON.stringify(state));
+  localStorage.setItem('emmaGiuliaPet_v4', JSON.stringify(state));
 }
 function haptic(ms) {
   if (navigator.vibrate) navigator.vibrate(ms || 12);
@@ -855,13 +1024,16 @@ function updateUI() {
   document.getElementById('hungerVal').textContent = Math.round(state.hunger);
   document.getElementById('happyVal').textContent = Math.round(state.happy);
   document.getElementById('energyVal').textContent = Math.round(state.energy);
+  document.getElementById('cuddleVal').textContent = Math.round(state.cuddle);
   document.getElementById('hungerBar').style.width = Math.max(0, state.hunger) + '%';
   document.getElementById('happyBar').style.width = Math.max(0, state.happy) + '%';
   document.getElementById('energyBar').style.width = Math.max(0, state.energy) + '%';
+  document.getElementById('cuddleBar').style.width = Math.max(0, state.cuddle) + '%';
   document.getElementById('level').textContent = state.level;
   document.getElementById('xp').textContent = state.xp;
   const cont = document.getElementById('petContainer');
   const btn = document.getElementById('btnSleep');
+  const cBtn = document.getElementById('btnCuddle');
   if (isSleeping) {
     cont.classList.add('sleeping');
     document.body.classList.add('night');
@@ -870,6 +1042,15 @@ function updateUI() {
     cont.classList.remove('sleeping');
     document.body.classList.remove('night');
     btn.classList.remove('active');
+  }
+  if (cuddleMode) {
+    cont.classList.add('cuddle-mode');
+    cBtn.classList.add('cuddle-active');
+    document.getElementById('cuddleHint').classList.add('show');
+  } else {
+    cont.classList.remove('cuddle-mode');
+    cBtn.classList.remove('cuddle-active');
+    document.getElementById('cuddleHint').classList.remove('show');
   }
 }
 function addXP(n) {
@@ -904,14 +1085,13 @@ function pickPhrase() {
   if (state.hunger < 28) return PHRASES.hungry[Math.floor(Math.random()*PHRASES.hungry.length)];
   if (state.energy < 28) return PHRASES.tired[Math.floor(Math.random()*PHRASES.tired.length)];
   if (state.happy < 32) return PHRASES.sad[Math.floor(Math.random()*PHRASES.sad.length)];
+  if (state.cuddle < 30) return PHRASES.cuddle[Math.floor(Math.random()*PHRASES.cuddle.length)];
   return PHRASES.happy[Math.floor(Math.random()*PHRASES.happy.length)];
 }
-/* ===== PET ===== */
-document.getElementById('petContainer').addEventListener('click', function() {
-  if (isSleeping) {
-    showSpeech(PHRASES.sleep[Math.floor(Math.random()*PHRASES.sleep.length)]);
-    return;
-  }
+
+/* ===== PET CLICK ===== */
+document.getElementById('petContainer').addEventListener('click', function(e) {
+  if (cuddleMode || isSleeping) return;
   haptic(10);
   const cont = this;
   cont.classList.remove('bounce');
@@ -934,6 +1114,68 @@ document.getElementById('petContainer').addEventListener('click', function() {
   saveState();
   updateUI();
 });
+
+/* ===== CUDDLE MODE (drag) ===== */
+const petCont = document.getElementById('petContainer');
+function onCuddleStart(e) {
+  if (!cuddleMode || isSleeping) return;
+  isCuddling = true;
+  const t = e.touches ? e.touches[0] : e;
+  lastCuddleX = t.clientX;
+  lastCuddleY = t.clientY;
+  e.preventDefault();
+}
+function onCuddleMove(e) {
+  if (!isCuddling || !cuddleMode) return;
+  e.preventDefault();
+  const t = e.touches ? e.touches[0] : e;
+  const dx = t.clientX - lastCuddleX;
+  const dy = t.clientY - lastCuddleY;
+  const dist = Math.sqrt(dx*dx + dy*dy);
+  if (dist > 8) {
+    lastCuddleX = t.clientX;
+    lastCuddleY = t.clientY;
+    state.cuddle = Math.min(100, state.cuddle + 1.8);
+    state.happy = Math.min(100, state.happy + 0.6);
+    addXP(1);
+    haptic(6);
+    const cont = petCont;
+    const h = document.createElement('div');
+    h.className = 'heart-float';
+    h.textContent = ['💖','💕','💗','🤗','💓'][Math.floor(Math.random()*5)];
+    h.style.left = (20 + Math.random()*160) + 'px';
+    h.style.top = (40 + Math.random()*100) + 'px';
+    h.style.fontSize = (12 + Math.random()*10) + 'px';
+    cont.appendChild(h);
+    setTimeout(function(){ h.remove(); }, 900);
+    if (Math.random() < 0.15) {
+      showSpeech(PHRASES.cuddle[Math.floor(Math.random()*PHRASES.cuddle.length)]);
+    }
+    saveState();
+    updateUI();
+  }
+}
+function onCuddleEnd() { isCuddling = false; }
+petCont.addEventListener('touchstart', onCuddleStart, { passive: false });
+petCont.addEventListener('touchmove', onCuddleMove, { passive: false });
+petCont.addEventListener('touchend', onCuddleEnd);
+petCont.addEventListener('mousedown', onCuddleStart);
+window.addEventListener('mousemove', onCuddleMove);
+window.addEventListener('mouseup', onCuddleEnd);
+
+document.getElementById('btnCuddle').addEventListener('click', function() {
+  if (isSleeping) { showToast('Sta dormendo... 💤'); return; }
+  haptic();
+  cuddleMode = !cuddleMode;
+  if (cuddleMode) {
+    showSpeech('Accarezzami~ 🤗');
+    showToast('Modalità coccole ON – trascina sul gatto!');
+  } else {
+    showToast('Modalità coccole OFF');
+  }
+  updateUI();
+});
+
 /* ===== FOOD ===== */
 document.getElementById('btnFood').addEventListener('click', openFood);
 document.getElementById('closeFood').addEventListener('click', function() {
@@ -951,10 +1193,10 @@ function openFood() {
     const div = document.createElement('div');
     div.className = 'food-item' + (unlocked ? '' : ' locked');
     div.innerHTML =
-      '<span class="food-emoji">' + f.emoji + '</span>' +
+      '<span class="food-emoji">' + (unlocked ? f.emoji : '🔒') + '</span>' +
       '<div class="food-name">' + f.name + '</div>' +
-      '<div class="food-price">' + (unlocked ? '🪙' + f.price : '🔒LV' + f.unlock) + '</div>' +
-      '<div class="food-effect">+' + f.hunger + '🍕 +' + f.happy + '💖</div>';
+      '<div class="food-price">' + (unlocked ? '🪙' + f.price : '🔒 LV' + f.unlock) + '</div>' +
+      (unlocked ? '<div class="food-effect">+' + f.hunger + '🍕 +' + f.happy + '💖</div>' : '<div class="food-effect">Sblocca a LV' + f.unlock + '</div>');
     if (unlocked) div.addEventListener('click', function(){ feed(id); });
     grid.appendChild(div);
   });
@@ -979,6 +1221,7 @@ function feed(id) {
   updateUI();
   document.getElementById('foodOverlay').classList.remove('show');
 }
+
 /* ===== KISS ===== */
 document.getElementById('btnKiss').addEventListener('click', function() {
   if (isSleeping) { showToast('Ssshh... dorme 💤'); return; }
@@ -1000,14 +1243,17 @@ document.getElementById('btnKiss').addEventListener('click', function() {
     }, i * 35);
   }
   state.happy = Math.min(100, state.happy + 14);
+  state.cuddle = Math.min(100, state.cuddle + 8);
   addXP(5);
   showSpeech(PHRASES.love[Math.floor(Math.random()*PHRASES.love.length)]);
   saveState();
   updateUI();
 });
+
 /* ===== SLEEP ===== */
 document.getElementById('btnSleep').addEventListener('click', function() {
   haptic();
+  if (cuddleMode) { cuddleMode = false; }
   isSleeping = !isSleeping;
   if (isSleeping) {
     showSpeech(PHRASES.sleep[0]);
@@ -1019,6 +1265,16 @@ document.getElementById('btnSleep').addEventListener('click', function() {
   saveState();
   updateUI();
 });
+
+/* ===== MUSIC ===== */
+document.getElementById('btnMusic').addEventListener('click', function() {
+  haptic();
+  document.getElementById('musicOverlay').classList.add('show');
+});
+document.getElementById('closeMusic').addEventListener('click', function() {
+  document.getElementById('musicOverlay').classList.remove('show');
+});
+
 /* ===== GAMES MENU ===== */
 document.getElementById('btnPlay').addEventListener('click', openGames);
 document.getElementById('closeGames').addEventListener('click', function() {
@@ -1033,7 +1289,9 @@ function openGames() {
     { emoji:'💖', name:'Acchiappa<br>Cuori', fn: startCatchGame },
     { emoji:'🃏', name:'Memory<br>Cuori', fn: startMemoryGame },
     { emoji:'🫧', name:'Scoppia<br>Bolle', fn: startBubbleGame },
-    { emoji:'🐱', name:'Tocca il<br>Micio', fn: startWhackGame }
+    { emoji:'🐱', name:'Tocca il<br>Micio', fn: startWhackGame },
+    { emoji:'🤗', name:'Accarezza<br>il Micio', fn: startStrokeGame },
+    { emoji:'❤️', name:'Disegna<br>Cuore', fn: startDrawGame }
   ];
   games.forEach(function(g) {
     const div = document.createElement('div');
@@ -1044,7 +1302,8 @@ function openGames() {
   });
   document.getElementById('gamesOverlay').classList.add('show');
 }
-/* ===== CATCH HEARTS (FIXED) ===== */
+
+/* ===== CATCH HEARTS ===== */
 let catchScore = 0, catchTimer = null, catchSpawn = null, catchTimeLeft = 30, catchEnded = false;
 document.getElementById('exitCatch').addEventListener('click', function(){ endCatchGame(false); });
 document.getElementById('closeCatchBtn').addEventListener('click', closeCatchGame);
@@ -1076,7 +1335,6 @@ function spawnHeart() {
   h.style.transition = 'transform ' + dur + 's linear';
   h.style.transform = 'translateY(-60px)';
   area.appendChild(h);
-  // force reflow then fall
   void h.offsetWidth;
   h.style.transform = 'translateY(110vh) rotate(180deg)';
   const hit = function(e) {
@@ -1121,6 +1379,7 @@ function closeCatchGame() {
   document.getElementById('catchGame').classList.remove('active');
   document.getElementById('catchOver').classList.remove('show');
 }
+
 /* ===== MEMORY ===== */
 const MEM_EMOJIS = ['💖','💕','💗','💓','💘','❤️','💞','🌸'];
 let memFlipped = [], memMatched = 0, memMoves = 0, memLock = false, memEnded = false;
@@ -1194,7 +1453,8 @@ function closeMemoryGame() {
   document.getElementById('memoryGame').classList.remove('active');
   document.getElementById('memoryOver').classList.remove('show');
 }
-/* ===== BUBBLE POP ===== */
+
+/* ===== BUBBLE ===== */
 let bubbleScore = 0, bubbleTimer = null, bubbleSpawn = null, bubbleTimeLeft = 25, bubbleEnded = false;
 document.getElementById('exitBubble').addEventListener('click', function(){ endBubbleGame(false); });
 document.getElementById('closeBubbleBtn').addEventListener('click', closeBubbleGame);
@@ -1265,7 +1525,8 @@ function closeBubbleGame() {
   document.getElementById('bubbleGame').classList.remove('active');
   document.getElementById('bubbleOver').classList.remove('show');
 }
-/* ===== WHACK-A-CAT ===== */
+
+/* ===== WHACK ===== */
 let whackScore = 0, whackTimer = null, whackSpawn = null, whackTimeLeft = 20, whackEnded = false, activeHole = -1;
 document.getElementById('exitWhack').addEventListener('click', function(){ endWhackGame(false); });
 document.getElementById('closeWhackBtn').addEventListener('click', closeWhackGame);
@@ -1336,21 +1597,240 @@ function closeWhackGame() {
   document.getElementById('whackGame').classList.remove('active');
   document.getElementById('whackOver').classList.remove('show');
 }
+
+/* ===== STROKE GAME (drag) ===== */
+let strokeScore = 0, strokeTimer = null, strokeTimeLeft = 20, strokeEnded = false, strokeActive = false, lastSX = 0, lastSY = 0;
+document.getElementById('exitStroke').addEventListener('click', function(){ endStrokeGame(false); });
+document.getElementById('closeStrokeBtn').addEventListener('click', closeStrokeGame);
+function startStrokeGame() {
+  document.getElementById('gamesOverlay').classList.remove('show');
+  strokeScore = 0; strokeTimeLeft = 20; strokeEnded = false; strokeActive = false;
+  document.getElementById('strokeScore').textContent = '0';
+  document.getElementById('strokeTime').textContent = '20';
+  document.getElementById('strokeFill').style.width = '0%';
+  document.getElementById('strokeOver').classList.remove('show');
+  document.getElementById('strokeGame').classList.add('active');
+  haptic();
+  strokeTimer = setInterval(function() {
+    strokeTimeLeft--;
+    document.getElementById('strokeTime').textContent = strokeTimeLeft;
+    if (strokeTimeLeft <= 0) endStrokeGame(true);
+  }, 1000);
+}
+const strokeArea = document.getElementById('strokeArea');
+strokeArea.addEventListener('touchstart', function(e) {
+  if (strokeEnded) return;
+  strokeActive = true;
+  const t = e.touches[0];
+  lastSX = t.clientX; lastSY = t.clientY;
+  e.preventDefault();
+}, { passive: false });
+strokeArea.addEventListener('touchmove', function(e) {
+  if (!strokeActive || strokeEnded) return;
+  e.preventDefault();
+  const t = e.touches[0];
+  const dx = t.clientX - lastSX, dy = t.clientY - lastSY;
+  const dist = Math.sqrt(dx*dx + dy*dy);
+  if (dist > 10) {
+    lastSX = t.clientX; lastSY = t.clientY;
+    strokeScore = Math.min(100, strokeScore + 2.5);
+    document.getElementById('strokeScore').textContent = Math.floor(strokeScore);
+    document.getElementById('strokeFill').style.width = strokeScore + '%';
+    haptic(5);
+    const cat = document.getElementById('strokeCat');
+    cat.style.transform = 'scale(' + (1 + Math.random()*0.08) + ')';
+    setTimeout(function(){ cat.style.transform = ''; }, 80);
+  }
+}, { passive: false });
+strokeArea.addEventListener('touchend', function(){ strokeActive = false; });
+strokeArea.addEventListener('mousedown', function(e) {
+  if (strokeEnded) return;
+  strokeActive = true;
+  lastSX = e.clientX; lastSY = e.clientY;
+});
+window.addEventListener('mousemove', function(e) {
+  if (!strokeActive || strokeEnded) return;
+  const dx = e.clientX - lastSX, dy = e.clientY - lastSY;
+  const dist = Math.sqrt(dx*dx + dy*dy);
+  if (dist > 10) {
+    lastSX = e.clientX; lastSY = e.clientY;
+    strokeScore = Math.min(100, strokeScore + 2.5);
+    document.getElementById('strokeScore').textContent = Math.floor(strokeScore);
+    document.getElementById('strokeFill').style.width = strokeScore + '%';
+  }
+});
+window.addEventListener('mouseup', function(){ strokeActive = false; });
+function endStrokeGame(finished) {
+  if (strokeEnded) return;
+  strokeEnded = true;
+  clearInterval(strokeTimer);
+  if (!finished) { document.getElementById('strokeGame').classList.remove('active'); return; }
+  const coinsEarned = Math.floor(strokeScore * 1.5) + (strokeScore >= 80 ? 30 : 0);
+  state.coins += coinsEarned;
+  state.happy = Math.min(100, state.happy + 18);
+  state.cuddle = Math.min(100, state.cuddle + 20);
+  state.energy = Math.max(0, state.energy - 5);
+  addXP(Math.floor(strokeScore / 4) + 6);
+  document.getElementById('strokeFinal').textContent = Math.floor(strokeScore);
+  document.getElementById('strokeCoins').textContent = coinsEarned;
+  document.getElementById('strokeOver').classList.add('show');
+  saveState(); updateUI();
+  clearTimeout(autoCloseTimer);
+  autoCloseTimer = setTimeout(closeStrokeGame, 3500);
+}
+function closeStrokeGame() {
+  clearTimeout(autoCloseTimer);
+  document.getElementById('strokeGame').classList.remove('active');
+  document.getElementById('strokeOver').classList.remove('show');
+}
+
+/* ===== DRAW HEART ===== */
+let drawScore = 0, drawTimer = null, drawTimeLeft = 25, drawEnded = false, drawing = false;
+let drawCtx = null, guidePoints = [], drawnPoints = [];
+document.getElementById('exitDraw').addEventListener('click', function(){ endDrawGame(false); });
+document.getElementById('closeDrawBtn').addEventListener('click', closeDrawGame);
+function startDrawGame() {
+  document.getElementById('gamesOverlay').classList.remove('show');
+  drawScore = 0; drawTimeLeft = 25; drawEnded = false; drawing = false; drawnPoints = [];
+  document.getElementById('drawScore').textContent = '0';
+  document.getElementById('drawTime').textContent = '25';
+  document.getElementById('drawOver').classList.remove('show');
+  document.getElementById('drawGame').classList.add('active');
+  const canvas = document.getElementById('drawCanvas');
+  drawCtx = canvas.getContext('2d');
+  drawCtx.clearRect(0, 0, 280, 280);
+  guidePoints = [];
+  drawCtx.strokeStyle = 'rgba(255,107,157,0.35)';
+  drawCtx.lineWidth = 6;
+  drawCtx.beginPath();
+  for (let t = 0; t <= Math.PI * 2; t += 0.05) {
+    const x = 140 + 90 * Math.pow(Math.sin(t), 3);
+    const y = 150 - 10 * (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+    guidePoints.push({x, y});
+    if (t === 0) drawCtx.moveTo(x, y);
+    else drawCtx.lineTo(x, y);
+  }
+  drawCtx.stroke();
+  haptic();
+  drawTimer = setInterval(function() {
+    drawTimeLeft--;
+    document.getElementById('drawTime').textContent = drawTimeLeft;
+    if (drawTimeLeft <= 0) endDrawGame(true);
+  }, 1000);
+}
+function getCanvasPos(e) {
+  const canvas = document.getElementById('drawCanvas');
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const t = e.touches ? e.touches[0] : e;
+  return { x: (t.clientX - rect.left) * scaleX, y: (t.clientY - rect.top) * scaleY };
+}
+const canvasEl = document.getElementById('drawCanvas');
+canvasEl.addEventListener('touchstart', function(e) {
+  if (drawEnded) return;
+  drawing = true;
+  const p = getCanvasPos(e);
+  drawnPoints.push(p);
+  drawCtx.strokeStyle = '#ff6b9d';
+  drawCtx.lineWidth = 5;
+  drawCtx.lineCap = 'round';
+  drawCtx.beginPath();
+  drawCtx.moveTo(p.x, p.y);
+  e.preventDefault();
+}, { passive: false });
+canvasEl.addEventListener('touchmove', function(e) {
+  if (!drawing || drawEnded) return;
+  e.preventDefault();
+  const p = getCanvasPos(e);
+  drawnPoints.push(p);
+  drawCtx.lineTo(p.x, p.y);
+  drawCtx.stroke();
+  drawCtx.beginPath();
+  drawCtx.moveTo(p.x, p.y);
+  let near = 0;
+  drawnPoints.forEach(function(dp) {
+    for (let i = 0; i < guidePoints.length; i++) {
+      const g = guidePoints[i];
+      if (Math.hypot(dp.x - g.x, dp.y - g.y) < 22) { near++; break; }
+    }
+  });
+  drawScore = Math.min(100, Math.floor((near / Math.max(guidePoints.length * 0.6, 1)) * 100));
+  document.getElementById('drawScore').textContent = drawScore;
+}, { passive: false });
+canvasEl.addEventListener('touchend', function(){ drawing = false; });
+canvasEl.addEventListener('mousedown', function(e) {
+  if (drawEnded) return;
+  drawing = true;
+  const p = getCanvasPos(e);
+  drawnPoints.push(p);
+  drawCtx.strokeStyle = '#ff6b9d';
+  drawCtx.lineWidth = 5;
+  drawCtx.lineCap = 'round';
+  drawCtx.beginPath();
+  drawCtx.moveTo(p.x, p.y);
+});
+canvasEl.addEventListener('mousemove', function(e) {
+  if (!drawing || drawEnded) return;
+  const p = getCanvasPos(e);
+  drawnPoints.push(p);
+  drawCtx.lineTo(p.x, p.y);
+  drawCtx.stroke();
+  drawCtx.beginPath();
+  drawCtx.moveTo(p.x, p.y);
+  let near = 0;
+  drawnPoints.forEach(function(dp) {
+    for (let i = 0; i < guidePoints.length; i++) {
+      const g = guidePoints[i];
+      if (Math.hypot(dp.x - g.x, dp.y - g.y) < 22) { near++; break; }
+    }
+  });
+  drawScore = Math.min(100, Math.floor((near / Math.max(guidePoints.length * 0.6, 1)) * 100));
+  document.getElementById('drawScore').textContent = drawScore;
+});
+canvasEl.addEventListener('mouseup', function(){ drawing = false; });
+function endDrawGame(finished) {
+  if (drawEnded) return;
+  drawEnded = true;
+  clearInterval(drawTimer);
+  if (!finished) { document.getElementById('drawGame').classList.remove('active'); return; }
+  const coinsEarned = Math.floor(drawScore * 1.8) + (drawScore >= 70 ? 25 : 0);
+  state.coins += coinsEarned;
+  state.happy = Math.min(100, state.happy + 16);
+  state.cuddle = Math.min(100, state.cuddle + 12);
+  state.energy = Math.max(0, state.energy - 4);
+  addXP(Math.floor(drawScore / 5) + 5);
+  document.getElementById('drawFinal').textContent = drawScore;
+  document.getElementById('drawCoins').textContent = coinsEarned;
+  document.getElementById('drawOver').classList.add('show');
+  saveState(); updateUI();
+  clearTimeout(autoCloseTimer);
+  autoCloseTimer = setTimeout(closeDrawGame, 3500);
+}
+function closeDrawGame() {
+  clearTimeout(autoCloseTimer);
+  document.getElementById('drawGame').classList.remove('active');
+  document.getElementById('drawOver').classList.remove('show');
+}
+
 /* ===== DECAY ===== */
 setInterval(function() {
   if (isSleeping) {
     state.energy = Math.min(100, state.energy + 0.4);
     state.hunger = Math.max(0, state.hunger - 0.035);
     state.happy = Math.max(0, state.happy - 0.025);
+    state.cuddle = Math.max(0, state.cuddle - 0.02);
   } else {
     state.hunger = Math.max(0, state.hunger - 0.07);
     state.happy = Math.max(0, state.happy - 0.055);
     state.energy = Math.max(0, state.energy - 0.045);
+    state.cuddle = Math.max(0, state.cuddle - 0.04);
   }
   if (Math.random() < 0.07 && !isSleeping) showSpeech(pickPhrase());
   saveState();
   updateUI();
 }, 2000);
+
 /* STARS */
 (function() {
   const box = document.getElementById('stars');
