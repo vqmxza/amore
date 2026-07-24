@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Emma 💖 Giulia">
+<meta name="theme-color" content="#ff6b9d">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="https://static.vecteezy.com/system/resources/previews/047/760/150/non_2x/adorable-kitten-with-blue-eyes-free-png.png">
+<link rel="icon" href="https://static.vecteezy.com/system/resources/previews/047/760/150/non_2x/adorable-kitten-with-blue-eyes-free-png.png">
+<title>Emma 💖 Giulia</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #ff6b9d;
+    --pink-l: #ff9ec0;
+    --pink-xl: #ffd0e0;
+    --rose: #e83e8c;
+    --cream: #fff5f8;
+    --dark: #2a0a1a;
+    --night: #0d0510;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    image-rendering: pixelated;
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(180deg, #ffeef5 0%, #ffd6e8 50%, #ffc2d9 100%);
+    color: #5a1a3a;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+    font-size: 10px;
+  }
+
+  body.night {
+    background: #0d0510;
+    color: #ffb3c6;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+  body.night::after {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.15) 2px,
+      rgba(0,0,0,0.15) 4px
+    );
+  }
+
+  .header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: calc(12px + env(safe-area-inset-top, 16px)) 10px 10px;
+    background: #fff0f5;
+    border-bottom: 4px solid #ff6b9d;
+    z-index: 100;
+    box-shadow: 0 4px 0 #ff9ec0;
+  }
+  body.night .header {
+    background: #1a0a14;
+    border-bottom-color: #ff6b9d;
+    box-shadow: 0 4px 0 #4a1a30;
+  }
+
+  .title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .app-title {
+    font-size: 11px;
+    color: #e83e8c;
+    text-shadow: 2px 2px 0 #ffb3c6;
+    letter-spacing: -1px;
+  }
+  body.night .app-title {
+    color: #ff9ec0;
+    text-shadow: 2px 2px 0 #5a1a3a;
+  }
+
+  .coins {
+    background: #fff;
+    border: 3px solid #ff6b9d;
+    padding: 6px 10px;
+    font-size: 10px;
+    color: #c2185b;
+    box-shadow: 3px 3px 0 #ff9ec0;
+  }
+  body.night .coins {
+    background: #2a1220;
+    color: #ffb3c6;
+    box-shadow: 3px 3px 0 #4a1a30;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+  }
+
+  .stat {
+    background: #fff;
+    border: 3px solid #ff6b9d;
+    padding: 5px 6px;
+    box-shadow: 2px 2px 0 #ff9ec0;
+  }
+  body.night .stat {
+    background: #2a1220;
+    border-color: #ff6b9d;
+    box-shadow: 2px 2px 0 #4a1a30;
+  }
+
+  .stat-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 7px;
+    margin-bottom: 4px;
+    color: #c2185b;
+  }
+  body.night .stat-label { color: #ff9ec0; }
+
+  .bar-bg {
+    height: 10px;
+    background: #ffd0e0;
+    border: 2px solid #ff6b9d;
+  }
+  body.night .bar-bg { background: #3a1a2a; }
+
+  .bar-fill {
+    height: 100%;
+    transition: width 0.3s steps(8);
+  }
+  .bar-hunger { background: #ff9a3c; box-shadow: inset -2px -2px 0 #e07020; }
+  .bar-happy  { background: #ff6b9d; box-shadow: inset -2px -2px 0 #d04070; }
+  .bar-energy { background: #5ac8ff; box-shadow: inset -2px -2px 0 #3090d0; }
+
+  .main {
+    position: fixed;
+    top: 130px;
+    bottom: 95px;
+    left: 0; right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    overflow: hidden;
+  }
+  body.night .main {
+    background: radial-gradient(ellipse at center, #1a0a18 0%, #0d0510 70%);
+  }
+
+  .stars {
+    display: none;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  body.night .stars { display: block; }
+  .star {
+    position: absolute;
+    width: 4px; height: 4px;
+    background: #ffd0e0;
+    box-shadow: 0 0 4px #ff9ec0;
+    animation: twinkle 2s steps(2) infinite;
+  }
+  @keyframes twinkle {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .pet-area {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .speech {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    color: #5a1a3a;
+    padding: 10px 12px;
+    border: 3px solid #ff6b9d;
+    font-size: 8px;
+    line-height: 1.5;
+    max-width: 250px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 20;
+    pointer-events: none;
+    box-shadow: 4px 4px 0 #ff9ec0;
+  }
+  .speech::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border: 8px solid transparent;
+    border-top-color: #ff6b9d;
+  }
+  .speech.show { opacity: 1; }
+  body.night .speech {
+    background: #2a1220;
+    color: #ffd0e0;
+    border-color: #ff6b9d;
+    box-shadow: 4px 4px 0 #4a1a30;
+  }
+  body.night .speech::after { border-top-color: #ff6b9d; }
+
+  .pet-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 36px;
+  }
+
+  .pet-img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    image-rendering: auto;
+    filter: drop-shadow(4px 6px 0 rgba(232,62,140,0.3));
+    transition: transform 0.1s steps(2);
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .pet-container.bounce .pet-img {
+    animation: bounce 0.45s steps(6);
+  }
+  @keyframes bounce {
+    0%   { transform: scale(1) translateY(0); }
+    25%  { transform: scale(1.15) translateY(-28px); }
+    50%  { transform: scale(0.92) translateY(0); }
+    75%  { transform: scale(1.08) translateY(-12px); }
+    100% { transform: scale(1) translateY(0); }
+  }
+
+  .pet-container.sleeping .pet-img {
+    filter: brightness(0.55) drop-shadow(0 0 12px #6b5cff);
+    animation: sleepBob 2.5s steps(4) infinite;
+  }
+  @keyframes sleepBob {
+    0%,100% { transform: translateY(0); }
+    50%     { transform: translateY(8px); }
+  }
+
+  .zzz {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+    opacity: 0;
+    pointer-events: none;
+    text-shadow: 2px 2px 0 #5a1a3a;
+  }
+  .pet-container.sleeping .zzz {
+    opacity: 1;
+    animation: zzzFloat 1.8s steps(3) infinite;
+  }
+  @keyframes zzzFloat {
+    0%,100% { transform: translateY(0); opacity: 1; }
+    50%     { transform: translateY(-14px); opacity: 0.5; }
+  }
+
+  .heart-float {
+    position: absolute;
+    font-size: 16px;
+    pointer-events: none;
+    animation: floatUp 1s steps(8) forwards;
+    z-index: 30;
+  }
+  @keyframes floatUp {
+    0%   { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-70px) scale(1.5); }
+  }
+
+  .level-badge {
+    margin-top: 14px;
+    background: #ff6b9d;
+    color: #fff;
+    font-size: 8px;
+    padding: 8px 14px;
+    border: 3px solid #c2185b;
+    box-shadow: 3px 3px 0 #ff9ec0;
+  }
+  body.night .level-badge {
+    background: #e83e8c;
+    box-shadow: 3px 3px 0 #4a1a30;
+  }
+
+  .bottom-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    padding: 10px 8px calc(10px + env(safe-area-inset-bottom, 8px));
+    background: #fff0f5;
+    border-top: 4px solid #ff6b9d;
+    display: flex;
+    justify-content: space-around;
+    z-index: 100;
+    box-shadow: 0 -4px 0 #ff9ec0;
+  }
+  body.night .bottom-bar {
+    background: #1a0a14;
+    border-top-color: #ff6b9d;
+    box-shadow: 0 -4px 0 #4a1a30;
+  }
+
+  .action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: #fff;
+    border: 3px solid #ff6b9d;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 8px 6px 6px;
+    min-width: 68px;
+    color: #5a1a3a;
+    box-shadow: 3px 3px 0 #ff9ec0;
+    transition: transform 0.05s steps(2);
+  }
+  body.night .action-btn {
+    background: #2a1220;
+    color: #ffd0e0;
+    box-shadow: 3px 3px 0 #4a1a30;
+  }
+  .action-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #ff9ec0;
+  }
+  .action-btn span {
+    font-size: 7px;
+  }
+  .action-btn.active {
+    background: #ff6b9d;
+    color: #fff;
+    box-shadow: 3px 3px 0 #c2185b;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,5,15,0.65);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal {
+    background: #fff5f8;
+    border: 4px solid #ff6b9d;
+    width: 92%;
+    max-width: 320px;
+    max-height: 78vh;
+    overflow-y: auto;
+    padding: 18px 14px;
+    box-shadow: 6px 6px 0 #ff9ec0;
+    position: relative;
+  }
+  body.night .modal {
+    background: #1a0a14;
+    border-color: #ff6b9d;
+    box-shadow: 6px 6px 0 #4a1a30;
+  }
+
+  .modal h2 {
+    font-size: 11px;
+    margin-bottom: 14px;
+    text-align: center;
+    color: #e83e8c;
+    line-height: 1.4;
+  }
+  body.night .modal h2 { color: #ff9ec0; }
+
+  .modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #ff6b9d;
+    border: 2px solid #c2185b;
+    width: 28px;
+    height: 28px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 0 #ff9ec0;
+  }
+
+  .food-grid, .game-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .food-item, .game-item {
+    background: #fff;
+    border: 3px solid #ff6b9d;
+    padding: 12px 6px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #ff9ec0;
+    transition: transform 0.05s steps(2);
+  }
+  body.night .food-item, body.night .game-item {
+    background: #2a1220;
+    box-shadow: 3px 3px 0 #4a1a30;
+  }
+  .food-item:active, .game-item:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #ff9ec0;
+  }
+  .food-item.locked {
+    opacity: 0.4;
+    filter: grayscale(1);
+  }
+  .food-emoji { font-size: 22px; display: block; margin-bottom: 4px; }
+  .food-name { font-size: 7px; line-height: 1.3; margin-bottom: 3px; }
+  .food-price { font-size: 7px; color: #e83e8c; }
+  .food-effect { font-size: 6px; margin-top: 3px; opacity: 0.8; line-height: 1.3; }
+
+  .game-screen {
+    position: fixed;
+    inset: 0;
+    background: #ffeef5;
+    z-index: 300;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  body.night .game-screen { background: #0d0510; }
+  .game-screen.active { display: flex; }
+
+  .game-hud {
+    width: 100%;
+    padding: 12px 12px;
+    padding-top: calc(12px + env(safe-area-inset-top, 16px));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    background: #fff0f5;
+    border-bottom: 4px solid #ff6b9d;
+    z-index: 10;
+  }
+  body.night .game-hud {
+    background: #1a0a14;
+    border-bottom-color: #ff6b9d;
+  }
+
+  .game-area {
+    flex: 1;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* FIXED CATCH HEARTS - larger hit area */
+  .falling-heart {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 5;
+    touch-action: manipulation;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+  }
+  .falling-heart span {
+    pointer-events: none;
+  }
+
+  .game-over-panel {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,240,245,0.95);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    text-align: center;
+    padding: 20px;
+  }
+  body.night .game-over-panel { background: rgba(13,5,16,0.95); }
+  .game-over-panel.show { display: flex; }
+  .game-over-panel h2 {
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: #e83e8c;
+    line-height: 1.4;
+  }
+  .game-over-panel p {
+    font-size: 9px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+
+  .btn-primary {
+    background: #ff6b9d;
+    color: #fff;
+    border: 3px solid #c2185b;
+    padding: 12px 20px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 #ff9ec0;
+  }
+  .btn-primary:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #ff9ec0;
+  }
+
+  .memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    padding: 12px;
+    width: 100%;
+    max-width: 300px;
+  }
+  .memory-card {
+    aspect-ratio: 1;
+    background: #ff6b9d;
+    border: 3px solid #c2185b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #ff9ec0;
+  }
+  .memory-card.flipped, .memory-card.matched {
+    background: #fff;
+    box-shadow: 3px 3px 0 #ffb3c6;
+  }
+  body.night .memory-card.flipped,
+  body.night .memory-card.matched {
+    background: #2a1220;
+    box-shadow: 3px 3px 0 #4a1a30;
+  }
+
+  /* BUBBLE POP */
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    border: 3px solid #ff6b9d;
+    background: rgba(255,182,193,0.7);
+    box-shadow: 3px 3px 0 #ff9ec0;
+    touch-action: manipulation;
+    animation: bubbleFloat 4s linear forwards;
+  }
+  @keyframes bubbleFloat {
+    0%   { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-120vh) scale(1.1); }
+  }
+
+  /* WHACK */
+  .whack-hole {
+    width: 70px;
+    height: 70px;
+    background: #ffd0e0;
+    border: 3px solid #ff6b9d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    cursor: pointer;
+    box-shadow: inset 2px 2px 0 #ff9ec0;
+    position: relative;
+  }
+  body.night .whack-hole { background: #3a1a2a; }
+  .whack-hole .mole {
+    position: absolute;
+    font-size: 36px;
+    transition: transform 0.12s steps(3);
+    transform: translateY(40px);
+    pointer-events: none;
+  }
+  .whack-hole.show .mole {
+    transform: translateY(0);
+  }
+
+  .kiss-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .kiss-overlay.show { opacity: 1; }
+  .big-kiss {
+    font-size: 72px;
+    animation: kissPop 1s steps(6) forwards;
+    text-shadow: 4px 4px 0 #c2185b;
+  }
+  @keyframes kissPop {
+    0%   { transform: scale(0); opacity: 0; }
+    40%  { transform: scale(1.4); opacity: 1; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
+
+  .toast {
+    position: fixed;
+    bottom: calc(100px + env(safe-area-inset-bottom, 8px));
+    left: 50%;
+    transform: translateX(-50%) translateY(16px);
+    background: #2a0a1a;
+    color: #ffd0e0;
+    padding: 10px 16px;
+    border: 3px solid #ff6b9d;
+    font-size: 8px;
+    line-height: 1.5;
+    z-index: 500;
+    opacity: 0;
+    transition: all 0.2s;
+    pointer-events: none;
+    max-width: 88%;
+    text-align: center;
+    box-shadow: 4px 4px 0 #ff9ec0;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .music-btn {
+    position: fixed;
+    top: calc(8px + env(safe-area-inset-top, 12px));
+    right: 10px;
+    z-index: 150;
+    background: #fff;
+    border: 3px solid #ff6b9d;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 0 #ff9ec0;
+    cursor: pointer;
+  }
+  body.night .music-btn {
+    background: #2a1220;
+    box-shadow: 2px 2px 0 #4a1a30;
+  }
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<button class="music-btn" id="musicBtn" title="Musica">🎵</button>
+
+<header class="header">
+  <div class="title-row">
+    <div class="app-title">Emma 💖 Giulia</div>
+    <div class="coins">🪙 <span id="coins">150</span></div>
+  </div>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label"><span>🍕</span><span id="hungerVal">85</span></div>
+      <div class="bar-bg"><div class="bar-fill bar-hunger" id="hungerBar" style="width:85%"></div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label"><span>💖</span><span id="happyVal">85</span></div>
+      <div class="bar-bg"><div class="bar-fill bar-happy" id="happyBar" style="width:85%"></div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label"><span>💤</span><span id="energyVal">90</span></div>
+      <div class="bar-bg"><div class="bar-fill bar-energy" id="energyBar" style="width:90%"></div></div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+  <div class="pet-area">
+    <div class="speech" id="speech">Ciao amore! 💕</div>
+    <div class="pet-container" id="petContainer">
+      <img class="pet-img" id="petImg"
+           src="https://static.vecteezy.com/system/resources/previews/047/760/150/non_2x/adorable-kitten-with-blue-eyes-free-png.png"
+           alt="Gattino" draggable="false">
+      <div class="zzz">💤</div>
+    </div>
+    <div class="level-badge">LV.<span id="level">1</span> XP<span id="xp">0</span>/100</div>
+  </div>
+</main>
+
+<nav class="bottom-bar">
+  <button class="action-btn" id="btnFood">🍕<span>Cibo</span></button>
+  <button class="action-btn" id="btnPlay">🎮<span>Gioca</span></button>
+  <button class="action-btn" id="btnKiss">💋<span>Bacio</span></button>
+  <button class="action-btn" id="btnSleep">🌙<span>Nanna</span></button>
+</nav>
+
+<div class="overlay" id="foodOverlay">
+  <div class="modal">
+    <button class="modal-close" id="closeFood">X</button>
+    <h2>🍕 NUTRI</h2>
+    <div class="food-grid" id="foodGrid"></div>
+  </div>
+</div>
+
+<div class="overlay" id="gamesOverlay">
+  <div class="modal">
+    <button class="modal-close" id="closeGames">X</button>
+    <h2>🎮 GIOCHI</h2>
+    <div class="game-grid" id="gameGrid"></div>
+  </div>
+</div>
+
+<!-- CATCH -->
+<div class="game-screen" id="catchGame">
+  <div class="game-hud">
+    <div>💖<span id="catchScore">0</span></div>
+    <div>⏱️<span id="catchTime">30</span>s</div>
+    <button class="btn-primary" style="padding:8px 12px;font-size:8px" id="exitCatch">ESCI</button>
+  </div>
+  <div class="game-area" id="catchArea"></div>
+  <div class="game-over-panel" id="catchOver">
+    <h2>FINE!</h2>
+    <p>Cuori: <strong id="catchFinal">0</strong><br>Monete: +<strong id="catchCoins">0</strong> 🪙</p>
+    <button class="btn-primary" id="closeCatchBtn">OK</button>
+  </div>
+</div>
+
+<!-- MEMORY -->
+<div class="game-screen" id="memoryGame">
+  <div class="game-hud">
+    <div>🃏<span id="memMoves">0</span></div>
+    <div>💖<span id="memPairs">0</span>/8</div>
+    <button class="btn-primary" style="padding:8px 12px;font-size:8px" id="exitMem">ESCI</button>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;width:100%">
+    <div class="memory-grid" id="memoryGrid"></div>
+  </div>
+  <div class="game-over-panel" id="memoryOver">
+    <h2>YAY! 🎉</h2>
+    <p>Mosse: <strong id="memFinalMoves">0</strong><br>Monete: +<strong id="memCoins">0</strong> 🪙</p>
+    <button class="btn-primary" id="closeMemBtn">OK</button>
+  </div>
+</div>
+
+<!-- BUBBLE -->
+<div class="game-screen" id="bubbleGame">
+  <div class="game-hud">
+    <div>🫧<span id="bubbleScore">0</span></div>
+    <div>⏱️<span id="bubbleTime">25</span>s</div>
+    <button class="btn-primary" style="padding:8px 12px;font-size:8px" id="exitBubble">ESCI</button>
+  </div>
+  <div class="game-area" id="bubbleArea"></div>
+  <div class="game-over-panel" id="bubbleOver">
+    <h2>FINE!</h2>
+    <p>Bolle: <strong id="bubbleFinal">0</strong><br>Monete: +<strong id="bubbleCoins">0</strong> 🪙</p>
+    <button class="btn-primary" id="closeBubbleBtn">OK</button>
+  </div>
+</div>
+
+<!-- WHACK -->
+<div class="game-screen" id="whackGame">
+  <div class="game-hud">
+    <div>🐱<span id="whackScore">0</span></div>
+    <div>⏱️<span id="whackTime">20</span>s</div>
+    <button class="btn-primary" style="padding:8px 12px;font-size:8px" id="exitWhack">ESCI</button>
+  </div>
+  <div class="game-area" style="display:flex;align-items:center;justify-content:center;">
+    <div id="whackGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;"></div>
+  </div>
+  <div class="game-over-panel" id="whackOver">
+    <h2>FINE!</h2>
+    <p>Colpi: <strong id="whackFinal">0</strong><br>Monete: +<strong id="whackCoins">0</strong> 🪙</p>
+    <button class="btn-primary" id="closeWhackBtn">OK</button>
+  </div>
+</div>
+
+<div class="kiss-overlay" id="kissOverlay">
+  <div class="big-kiss">💋</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const DEFAULT = {
+  coins: 150, hunger: 85, happy: 85, energy: 90,
+  level: 1, xp: 0,
+  unlockedFoods: ['latte','pesce','torta','cookie','frutta'],
+  lastTick: Date.now(), sleeping: false
+};
+
+let state = loadState();
+let speechTimeout = null;
+let isSleeping = !!state.sleeping;
+let autoCloseTimer = null;
+let musicOn = false;
+let audioCtx = null;
+let musicInterval = null;
+
+const FOODS = {
+  latte:      { emoji:'🥛', name:'Latte',      price:8,  hunger:18, happy:6,  energy:0,  unlock:1 },
+  pesce:      { emoji:'🐟', name:'Pesce',      price:14, hunger:28, happy:10, energy:4,  unlock:1 },
+  torta:      { emoji:'🍰', name:'Torta',      price:20, hunger:22, happy:22, energy:0,  unlock:1 },
+  cookie:     { emoji:'🍪', name:'Biscotto',   price:10, hunger:12, happy:16, energy:0,  unlock:1 },
+  frutta:     { emoji:'🍓', name:'Fragole',    price:12, hunger:14, happy:12, energy:6,  unlock:1 },
+  yogurt:     { emoji:'🍦', name:'Yogurt',     price:15, hunger:16, happy:14, energy:8,  unlock:2 },
+  pollo:      { emoji:'🍗', name:'Pollo',      price:22, hunger:32, happy:12, energy:10, unlock:3 },
+  salmone:    { emoji:'🍣', name:'Salmone',    price:28, hunger:38, happy:14, energy:10, unlock:3 },
+  cioccolata: { emoji:'🍫', name:'Ciocco',     price:16, hunger:10, happy:24, energy:0,  unlock:4 },
+  rainbow:    { emoji:'🌈', name:'Torta Arc.', price:35, hunger:25, happy:30, energy:5,  unlock:5 },
+  sushi:      { emoji:'🍱', name:'Sushi',      price:40, hunger:42, happy:28, energy:12, unlock:6 },
+  miele:      { emoji:'🍯', name:'Miele',      price:18, hunger:15, happy:20, energy:15, unlock:7 },
+  stella:     { emoji:'⭐', name:'Cibo Stella',price:50, hunger:45, happy:35, energy:20, unlock:8 }
+};
+
+const PHRASES = {
+  happy: [
+    "Ti amo tantissimo!! 💕","Sei la mia preferita 🌸","Che giornata bellissima!",
+    "Dammi un bacione 💋","Il mio cuore è tuo 💖","Emma + Giulia forever ✨",
+    "Sei magica!! 🌟","Miao d'amore!!","Che felicità!! 🥰","Resta con me per sempre"
+  ],
+  hungry: [
+    "Ho una fame da micio... 🍕","Un pezzetto di pesce? 🥺","Il pancino brontola forte!",
+    "Nutrimi amore mio!!","Qualcosa di yummy please~","Sto diventando un gattino magro..."
+  ],
+  tired: [
+    "Sono proprio stanca... 💤","Vorrei fare la nanna adesso","Gli occhioni si chiudono...",
+    "Portami a letto 🌙","Zzz quasi...","Ho bisogno di riposare un po'"
+  ],
+  sad: [
+    "Mi manchi un pochino... 😢","Coccolami per favoreee","Ho bisogno di attenzioni 💗",
+    "Giochiamo insieme?","Non lasciarmi sola...","Un bacio mi farebbe felice"
+  ],
+  love: [
+    "Mmm che bello!! 🥰","Ancora ancora ancora!!","Il mio cuore è pieno 💖",
+    "Sei dolcissima!!","Yay yay yay!!","Più coccoleee~","Mi fai le fusa!!"
+  ],
+  sleep: [
+    "Zzz... sogni d'amore 💤","Buonanotte principessa...","Sto sognando te... 🌙",
+    "Nanna time... zzz","Sogni rosa per te","Dormo tra le nuvole 💕"
+  ]
+};
+
+function loadState() {
+  try {
+    const s = localStorage.getItem('emmaGiuliaPet_v3');
+    if (s) {
+      const p = JSON.parse(s);
+      const now = Date.now();
+      const elapsed = Math.min((now - (p.lastTick || now)) / 1000, 28800);
+      p.hunger = Math.max(0, (p.hunger||85) - elapsed * 0.012);
+      p.happy  = Math.max(0, (p.happy||85)  - elapsed * 0.010);
+      p.energy = Math.max(0, (p.energy||90) - elapsed * 0.008);
+      p.lastTick = now;
+      return Object.assign({}, DEFAULT, p);
+    }
+  } catch(e) {}
+  return Object.assign({}, DEFAULT);
+}
+
+function saveState() {
+  state.lastTick = Date.now();
+  state.sleeping = isSleeping;
+  localStorage.setItem('emmaGiuliaPet_v3', JSON.stringify(state));
+}
+
+function haptic(ms) {
+  if (navigator.vibrate) navigator.vibrate(ms || 12);
+}
+
+function showToast(msg, dur) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), dur || 2200);
+}
+
+function updateUI() {
+  document.getElementById('coins').textContent = Math.floor(state.coins);
+  document.getElementById('hungerVal').textContent = Math.round(state.hunger);
+  document.getElementById('happyVal').textContent = Math.round(state.happy);
+  document.getElementById('energyVal').textContent = Math.round(state.energy);
+  document.getElementById('hungerBar').style.width = Math.max(0, state.hunger) + '%';
+  document.getElementById('happyBar').style.width  = Math.max(0, state.happy)  + '%';
+  document.getElementById('energyBar').style.width = Math.max(0, state.energy) + '%';
+  document.getElementById('level').textContent = state.level;
+  document.getElementById('xp').textContent = state.xp;
+
+  const cont = document.getElementById('petContainer');
+  const btn = document.getElementById('btnSleep');
+  if (isSleeping) {
+    cont.classList.add('sleeping');
+    document.body.classList.add('night');
+    btn.classList.add('active');
+  } else {
+    cont.classList.remove('sleeping');
+    document.body.classList.remove('night');
+    btn.classList.remove('active');
+  }
+}
+
+function addXP(n) {
+  state.xp += n;
+  let leveled = false;
+  while (state.xp >= 100) {
+    state.xp -= 100;
+    state.level++;
+    leveled = true;
+  }
+  if (leveled) {
+    haptic(40);
+    showToast('🎉 LIVELLO ' + state.level + '!! Nuovi cibi sbloccati!');
+    Object.keys(FOODS).forEach(k => {
+      if (FOODS[k].unlock <= state.level && state.unlockedFoods.indexOf(k) === -1) {
+        state.unlockedFoods.push(k);
+      }
+    });
+  }
+  saveState();
+  updateUI();
+}
+
+function showSpeech(txt) {
+  const el = document.getElementById('speech');
+  el.textContent = txt;
+  el.classList.add('show');
+  clearTimeout(speechTimeout);
+  speechTimeout = setTimeout(() => el.classList.remove('show'), 3200);
+}
+
+function pickPhrase() {
+  if (isSleeping) return PHRASES.sleep[Math.floor(Math.random()*PHRASES.sleep.length)];
+  if (state.hunger < 28) return PHRASES.hungry[Math.floor(Math.random()*PHRASES.hungry.length)];
+  if (state.energy < 28) return PHRASES.tired[Math.floor(Math.random()*PHRASES.tired.length)];
+  if (state.happy < 32)  return PHRASES.sad[Math.floor(Math.random()*PHRASES.sad.length)];
+  return PHRASES.happy[Math.floor(Math.random()*PHRASES.happy.length)];
+}
+
+/* ===== MUSIC (chiptune semplice) ===== */
+function initAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+}
+
+function playNote(freq, dur, type) {
+  if (!audioCtx || !musicOn) return;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = type || 'square';
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  osc.stop(audioCtx.currentTime + dur);
+}
+
+const MELODY = [
+  [523,0.18],[587,0.18],[659,0.18],[698,0.18],[784,0.25],[698,0.18],[659,0.18],[587,0.18],
+  [523,0.18],[587,0.18],[659,0.18],[523,0.35],[0,0.1],
+  [392,0.18],[440,0.18],[494,0.18],[523,0.25],[494,0.18],[440,0.18],[392,0.35]
+];
+
+function startMusic() {
+  initAudio();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  let i = 0;
+  musicInterval = setInterval(function() {
+    if (!musicOn) return;
+    const n = MELODY[i % MELODY.length];
+    if (n[0] > 0) playNote(n[0], n[1], 'square');
+    i++;
+  }, 220);
+}
+
+function stopMusic() {
+  clearInterval(musicInterval);
+  musicInterval = null;
+}
+
+document.getElementById('musicBtn').addEventListener('click', function() {
+  musicOn = !musicOn;
+  this.textContent = musicOn ? '🔊' : '🎵';
+  if (musicOn) startMusic();
+  else stopMusic();
+  haptic(8);
+});
+
+/* ===== PET ===== */
+document.getElementById('petContainer').addEventListener('click', function() {
+  if (isSleeping) {
+    showSpeech(PHRASES.sleep[Math.floor(Math.random()*PHRASES.sleep.length)]);
+    return;
+  }
+  haptic(10);
+  const cont = this;
+  cont.classList.remove('bounce');
+  void cont.offsetWidth;
+  cont.classList.add('bounce');
+  for (let i = 0; i < 6; i++) {
+    setTimeout(function() {
+      const h = document.createElement('div');
+      h.className = 'heart-float';
+      h.textContent = ['💖','💕','💗','💓','💘'][Math.floor(Math.random()*5)];
+      h.style.left = (30 + Math.random()*140) + 'px';
+      h.style.top  = (70 + Math.random()*50) + 'px';
+      cont.appendChild(h);
+      setTimeout(function(){ h.remove(); }, 1100);
+    }, i * 70);
+  }
+  state.happy = Math.min(100, state.happy + 4);
+  addXP(2);
+  showSpeech(PHRASES.love[Math.floor(Math.random()*PHRASES.love.length)]);
+  saveState();
+  updateUI();
+});
+
+/* ===== FOOD ===== */
+document.getElementById('btnFood').addEventListener('click', openFood);
+document.getElementById('closeFood').addEventListener('click', function() {
+  document.getElementById('foodOverlay').classList.remove('show');
+});
+
+function openFood() {
+  if (isSleeping) { showToast('Sta dormendo... 💤'); return; }
+  haptic();
+  const grid = document.getElementById('foodGrid');
+  grid.innerHTML = '';
+  Object.keys(FOODS).forEach(function(id) {
+    const f = FOODS[id];
+    const unlocked = state.unlockedFoods.indexOf(id) !== -1 || f.unlock <= state.level;
+    if (unlocked && state.unlockedFoods.indexOf(id) === -1) state.unlockedFoods.push(id);
+    const div = document.createElement('div');
+    div.className = 'food-item' + (unlocked ? '' : ' locked');
+    div.innerHTML =
+      '<span class="food-emoji">' + f.emoji + '</span>' +
+      '<div class="food-name">' + f.name + '</div>' +
+      '<div class="food-price">' + (unlocked ? '🪙' + f.price : '🔒LV' + f.unlock) + '</div>' +
+      '<div class="food-effect">+' + f.hunger + '🍕 +' + f.happy + '💖</div>';
+    if (unlocked) div.addEventListener('click', function(){ feed(id); });
+    grid.appendChild(div);
+  });
+  document.getElementById('foodOverlay').classList.add('show');
+}
+
+function feed(id) {
+  const f = FOODS[id];
+  if (state.coins < f.price) {
+    showToast('Monete insufficienti 😢');
+    haptic(25);
+    return;
+  }
+  haptic(18);
+  state.coins -= f.price;
+  state.hunger = Math.min(100, state.hunger + f.hunger);
+  state.happy  = Math.min(100, state.happy  + f.happy);
+  state.energy = Math.min(100, state.energy + (f.energy || 0));
+  addXP(6);
+  showSpeech('Buono il ' + f.name + '! ' + f.emoji);
+  showToast('+' + f.hunger + ' Fame  +' + f.happy + ' Felicità');
+  saveState();
+  updateUI();
+  document.getElementById('foodOverlay').classList.remove('show');
+}
+
+/* ===== KISS ===== */
+document.getElementById('btnKiss').addEventListener('click', function() {
+  if (isSleeping) { showToast('Ssshh... dorme 💤'); return; }
+  haptic([12, 40, 12]);
+  const ov = document.getElementById('kissOverlay');
+  ov.classList.add('show');
+  setTimeout(function(){ ov.classList.remove('show'); }, 1100);
+  const main = document.querySelector('.main');
+  for (let i = 0; i < 16; i++) {
+    setTimeout(function() {
+      const h = document.createElement('div');
+      h.className = 'heart-float';
+      h.textContent = ['💖','💕','💗','💓','💘','❤️'][Math.floor(Math.random()*6)];
+      h.style.left = (Math.random()*85) + '%';
+      h.style.top  = (25 + Math.random()*45) + '%';
+      h.style.fontSize = (14 + Math.random()*14) + 'px';
+      main.appendChild(h);
+      setTimeout(function(){ h.remove(); }, 1100);
+    }, i * 35);
+  }
+  state.happy = Math.min(100, state.happy + 14);
+  addXP(5);
+  showSpeech(PHRASES.love[Math.floor(Math.random()*PHRASES.love.length)]);
+  saveState();
+  updateUI();
+});
+
+/* ===== SLEEP ===== */
+document.getElementById('btnSleep').addEventListener('click', function() {
+  haptic();
+  isSleeping = !isSleeping;
+  if (isSleeping) {
+    showSpeech(PHRASES.sleep[0]);
+    showToast('Modalità nanna 🌙 Luci spente');
+  } else {
+    showSpeech('Buongiorno!! ☀️');
+    showToast('Il gattino si è svegliato!');
+  }
+  saveState();
+  updateUI();
+});
+
+/* ===== GAMES MENU ===== */
+document.getElementById('btnPlay').addEventListener('click', openGames);
+document.getElementById('closeGames').addEventListener('click', function() {
+  document.getElementById('gamesOverlay').classList.remove('show');
+});
+
+function openGames() {
+  if (isSleeping) { showToast('Sta dormendo... 💤'); return; }
+  haptic();
+  const grid = document.getElementById('gameGrid');
+  grid.innerHTML = '';
+
+  const games = [
+    { emoji:'💖', name:'Acchiappa<br>Cuori', fn: startCatchGame },
+    { emoji:'🃏', name:'Memory<br>Cuori', fn: startMemoryGame },
+    { emoji:'🫧', name:'Scoppia<br>Bolle', fn: startBubbleGame },
+    { emoji:'🐱', name:'Tocca il<br>Micio', fn: startWhackGame }
+  ];
+  games.forEach(function(g) {
+    const div = document.createElement('div');
+    div.className = 'game-item';
+    div.innerHTML = '<span class="food-emoji">' + g.emoji + '</span><div class="food-name">' + g.name + '</div>';
+    div.addEventListener('click', g.fn);
+    grid.appendChild(div);
+  });
+  document.getElementById('gamesOverlay').classList.add('show');
+}
+
+/* ===== CATCH HEARTS (FIXED) ===== */
+let catchScore = 0, catchTimer = null, catchSpawn = null, catchTimeLeft = 30, catchEnded = false;
+
+document.getElementById('exitCatch').addEventListener('click', function(){ endCatchGame(false); });
+document.getElementById('closeCatchBtn').addEventListener('click', closeCatchGame);
+
+function startCatchGame() {
+  document.getElementById('gamesOverlay').classList.remove('show');
+  catchScore = 0; catchTimeLeft = 30; catchEnded = false;
+  document.getElementById('catchScore').textContent = '0';
+  document.getElementById('catchTime').textContent = '30';
+  document.getElementById('catchOver').classList.remove('show');
+  document.getElementById('catchArea').innerHTML = '';
+  document.getElementById('catchGame').classList.add('active');
+  haptic();
+
+  catchTimer = setInterval(function() {
+    catchTimeLeft--;
+    document.getElementById('catchTime').textContent = catchTimeLeft;
+    if (catchTimeLeft <= 0) endCatchGame(true);
+  }, 1000);
+  catchSpawn = setInterval(spawnHeart, 480);
+}
+
+function spawnHeart() {
+  if (catchEnded) return;
+  const area = document.getElementById('catchArea');
+  const h = document.createElement('div');
+  h.className = 'falling-heart';
+  const em = ['💖','💕','💗','💓','💘','❤️'][Math.floor(Math.random()*6)];
+  h.innerHTML = '<span>' + em + '</span>';
+  h.style.left = (4 + Math.random()*80) + '%';
+  const dur = 2.4 + Math.random()*1.8;
+  h.style.transition = 'transform ' + dur + 's linear';
+  h.style.transform = 'translateY(-60px)';
+  area.appendChild(h);
+
+  // force reflow then fall
+  void h.offsetWidth;
+  h.style.transform = 'translateY(110vh) rotate(180deg)';
+
+  const hit = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (catchEnded || h._hit) return;
+    h._hit = true;
+    haptic(8);
+    catchScore++;
+    document.getElementById('catchScore').textContent = catchScore;
+    h.style.transition = 'transform 0.15s steps(3), opacity 0.15s';
+    h.style.transform = 'scale(1.4)';
+    h.style.opacity = '0';
+    setTimeout(function(){ if (h.parentNode) h.remove(); }, 160);
+  };
+  h.addEventListener('touchstart', hit, { passive: false });
+  h.addEventListener('mousedown', hit);
+
+  setTimeout(function(){ if (h.parentNode && !h._hit) h.remove(); }, (dur * 1000) + 200);
+}
+
+function endCatchGame(finished) {
+  if (catchEnded) return;
+  catchEnded = true;
+  clearInterval(catchTimer); clearInterval(catchSpawn);
+  if (!finished) {
+    document.getElementById('catchGame').classList.remove('active');
+    return;
+  }
+  const coinsEarned = Math.floor(catchScore * 2.2) + (catchScore >= 25 ? 25 : 0);
+  state.coins += coinsEarned;
+  state.happy = Math.min(100, state.happy + 16);
+  state.energy = Math.max(0, state.energy - 7);
+  addXP(Math.floor(catchScore / 2) + 4);
+  document.getElementById('catchFinal').textContent = catchScore;
+  document.getElementById('catchCoins').textContent = coinsEarned;
+  document.getElementById('catchOver').classList.add('show');
+  saveState(); updateUI();
+  clearTimeout(autoCloseTimer);
+  autoCloseTimer = setTimeout(closeCatchGame, 3500);
+}
+
+function closeCatchGame() {
+  clearTimeout(autoCloseTimer);
+  document.getElementById('catchGame').classList.remove('active');
+  document.getElementById('catchOver').classList.remove('show');
+}
+
+/* ===== MEMORY ===== */
+const MEM_EMOJIS = ['💖','💕','💗','💓','💘','❤️','💞','🌸'];
+let memFlipped = [], memMatched = 0, memMoves = 0, memLock = false, memEnded = false;
+
+document.getElementById('exitMem').addEventListener('click', function(){ endMemoryGame(false); });
+document.getElementById('closeMemBtn').addEventListener('click', closeMemoryGame);
+
+function startMemoryGame() {
+  document.getElementById('gamesOverlay').classList.remove('show');
+  memFlipped = []; memMatched = 0; memMoves = 0; memLock = false; memEnded = false;
+  document.getElementById('memMoves').textContent = '0';
+  document.getElementById('memPairs').textContent = '0';
+  document.getElementById('memoryOver').classList.remove('show');
+  const cards = MEM_EMOJIS.concat(MEM_EMOJIS).sort(function(){ return Math.random()-0.5; });
+  const grid = document.getElementById('memoryGrid');
+  grid.innerHTML = '';
+  cards.forEach(function(emoji) {
+    const card = document.createElement('div');
+    card.className = 'memory-card';
+    card.dataset.emoji = emoji;
+    card.textContent = '?';
+    card.addEventListener('click', function(){ flipCard(card); });
+    grid.appendChild(card);
+  });
+  document.getElementById('memoryGame').classList.add('active');
+  haptic();
+}
+
+function flipCard(card) {
+  if (memLock || memEnded || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+  haptic(6);
+  card.classList.add('flipped');
+  card.textContent = card.dataset.emoji;
+  memFlipped.push(card);
+  if (memFlipped.length === 2) {
+    memMoves++;
+    document.getElementById('memMoves').textContent = memMoves;
+    memLock = true;
+    const a = memFlipped[0], b = memFlipped[1];
+    if (a.dataset.emoji === b.dataset.emoji) {
+      a.classList.add('matched'); b.classList.add('matched');
+      memMatched++;
+      document.getElementById('memPairs').textContent = memMatched;
+      memFlipped = []; memLock = false;
+      haptic(18);
+      if (memMatched === 8) endMemoryGame(true);
+    } else {
+      setTimeout(function() {
+        a.classList.remove('flipped'); b.classList.remove('flipped');
+        a.textContent = '?'; b.textContent = '?';
+        memFlipped = []; memLock = false;
+      }, 650);
+    }
+  }
+}
+
+function endMemoryGame(won) {
+  if (memEnded) return;
+  memEnded = true;
+  if (!won) { document.getElementById('memoryGame').classList.remove('active'); return; }
+  const coinsEarned = Math.max(20, 90 - memMoves * 3);
+  state.coins += coinsEarned;
+  state.happy = Math.min(100, state.happy + 20);
+  state.energy = Math.max(0, state.energy - 5);
+  addXP(15);
+  document.getElementById('memFinalMoves').textContent = memMoves;
+  document.getElementById('memCoins').textContent = coinsEarned;
+  document.getElementById('memoryOver').classList.add('show');
+  saveState(); updateUI();
+  clearTimeout(autoCloseTimer);
+  autoCloseTimer = setTimeout(closeMemoryGame, 3500);
+}
+
+function closeMemoryGame() {
+  clearTimeout(autoCloseTimer);
+  document.getElementById('memoryGame').classList.remove('active');
+  document.getElementById('memoryOver').classList.remove('show');
+}
+
+/* ===== BUBBLE POP ===== */
+let bubbleScore = 0, bubbleTimer = null, bubbleSpawn = null, bubbleTimeLeft = 25, bubbleEnded = false;
+
+document.getElementById('exitBubble').addEventListener('click', function(){ endBubbleGame(false); });
+document.getElementById('closeBubbleBtn').addEventListener('click', closeBubbleGame);
+
+function startBubbleGame() {
+  document.getElementById('gamesOverlay').classList.remove('show');
+  bubbleScore = 0; bubbleTimeLeft = 25; bubbleEnded = false;
+  document.getElementById('bubbleScore').textContent = '0';
+  document.getElementById('bubbleTime').textContent = '25';
+  document.getElementById('bubbleOver').classList.remove('show');
+  document.getElementById('bubbleArea').innerHTML = '';
+  document.getElementById('bubbleGame').classList.add('active');
+  haptic();
+  bubbleTimer = setInterval(function() {
+    bubbleTimeLeft--;
+    document.getElementById('bubbleTime').textContent = bubbleTimeLeft;
+    if (bubbleTimeLeft <= 0) endBubbleGame(true);
+  }, 1000);
+  bubbleSpawn = setInterval(spawnBubble, 600);
+}
+
+function spawnBubble() {
+  if (bubbleEnded) return;
+  const area = document.getElementById('bubbleArea');
+  const b = document.createElement('div');
+  b.className = 'bubble';
+  const size = 48 + Math.random() * 28;
+  b.style.width = size + 'px';
+  b.style.height = size + 'px';
+  b.style.left = (5 + Math.random() * 75) + '%';
+  b.style.bottom = '-60px';
+  b.textContent = ['💖','💕','🫧','💗','✨'][Math.floor(Math.random()*5)];
+  b.style.animationDuration = (3.5 + Math.random() * 2) + 's';
+
+  const hit = function(e) {
+    e.preventDefault();
+    if (bubbleEnded || b._hit) return;
+    b._hit = true;
+    haptic(8);
+    bubbleScore++;
+    document.getElementById('bubbleScore').textContent = bubbleScore;
+    b.style.transition = 'transform 0.15s, opacity 0.15s';
+    b.style.transform = 'scale(1.5)';
+    b.style.opacity = '0';
+    setTimeout(function(){ if (b.parentNode) b.remove(); }, 150);
+  };
+  b.addEventListener('touchstart', hit, { passive: false });
+  b.addEventListener('mousedown', hit);
+  area.appendChild(b);
+  setTimeout(function(){ if (b.parentNode && !b._hit) b.remove(); }, 6000);
+}
+
+function endBubbleGame(finished) {
+  if (bubbleEnded) return;
+  bubbleEnded = true;
+  clearInterval(bubbleTimer); clearInterval(bubbleSpawn);
+  if (!finished) { document.getElementById('bubbleGame').classList.remove('active'); return; }
+  const coinsEarned = Math.floor(bubbleScore * 2.5) + (bubbleScore >= 20 ? 20 : 0);
+  state.coins += coinsEarned;
+  state.happy = Math.min(100, state.happy + 14);
+  state.energy = Math.max(0, state.energy - 6);
+  addXP(Math.floor(bubbleScore / 2) + 3);
+  document.getElementById('bubbleFinal').textContent = bubbleScore;
+  document.getElementById('bubbleCoins').textContent = coinsEarned;
+  document.getElementById('bubbleOver').classList.add('show');
+  saveState(); updateUI();
+  clearTimeout(autoCloseTimer);
+  autoCloseTimer = setTimeout(closeBubbleGame, 3500);
+}
+
+function closeBubbleGame() {
+  clearTimeout(autoCloseTimer);
+  document.getElementById('bubbleGame').classList.remove('active');
+  document.getElementById('bubbleOver').classList.remove('show');
+}
+
+/* ===== WHACK-A-CAT ===== */
+let whackScore = 0, whackTimer = null, whackSpawn = null, whackTimeLeft = 20, whackEnded = false, activeHole = -1;
+
+document.getElementById('exitWhack').addEventListener('click', function(){ endWhackGame(false); });
+document.getElementById('closeWhackBtn').addEventListener('click', closeWhackGame);
+
+function startWhackGame() {
+  document.getElementById('gamesOverlay').classList.remove('show');
+  whackScore = 0; whackTimeLeft = 20; whackEnded = false; activeHole = -1;
+  document.getElementById('whackScore').textContent = '0';
+  document.getElementById('whackTime').textContent = '20';
+  document.getElementById('whackOver').classList.remove('show');
+
+  const grid = document.getElementById('whackGrid');
+  grid.innerHTML = '';
+  for (let i = 0; i < 9; i++) {
+    const hole = document.createElement('div');
+    hole.className = 'whack-hole';
+    hole.dataset.idx = i;
+    hole.innerHTML = '<div class="mole">🐱</div>';
+    hole.addEventListener('click', function(){ hitWhack(i); });
+    hole.addEventListener('touchstart', function(e){ e.preventDefault(); hitWhack(i); }, { passive: false });
+    grid.appendChild(hole);
+  }
+  document.getElementById('whackGame').classList.add('active');
+  haptic();
+
+  whackTimer = setInterval(function() {
+    whackTimeLeft--;
+    document.getElementById('whackTime').textContent = whackTimeLeft;
+    if (whackTimeLeft <= 0) endWhackGame(true);
+  }, 1000);
+  whackSpawn = setInterval(showMole, 700);
+}
+
+function showMole() {
+  if (whackEnded) return;
+  const holes = document.querySelectorAll('.whack-hole');
+  holes.forEach(function(h){ h.classList.remove('show'); });
+  activeHole = Math.floor(Math.random() * 9);
+  holes[activeHole].classList.add('show');
+  setTimeout(function() {
+    if (holes[activeHole]) holes[activeHole].classList.remove('show');
+    activeHole = -1;
+  }, 650);
+}
+
+function hitWhack(idx) {
+  if (whackEnded || idx !== activeHole) return;
+  haptic(12);
+  whackScore++;
+  document.getElementById('whackScore').textContent = whackScore;
+  document.querySelectorAll('.whack-hole')[idx].classList.remove('show');
+  activeHole = -1;
+}
+
+function endWhackGame(finished) {
+  if (whackEnded) return;
+  whackEnded = true;
+  clearInterval(whackTimer); clearInterval(whackSpawn);
+  if (!finished) { document.getElementById('whackGame').classList.remove('active'); return; }
+  const coinsEarned = Math.floor(whackScore * 3) + (whackScore >= 15 ? 20 : 0);
+  state.coins += coinsEarned;
+  state.happy = Math.min(100, state.happy + 18);
+  state.energy = Math.max(0, state.energy - 8);
+  addXP(Math.floor(whackScore / 1.5) + 5);
+  document.getElementById('whackFinal').textContent = whackScore;
+  document.getElementById('whackCoins').textContent = coinsEarned;
+  document.getElementById('whackOver').classList.add('show');
+  saveState(); updateUI();
+  clearTimeout(autoCloseTimer);
+  autoCloseTimer = setTimeout(closeWhackGame, 3500);
+}
+
+function closeWhackGame() {
+  clearTimeout(autoCloseTimer);
+  document.getElementById('whackGame').classList.remove('active');
+  document.getElementById('whackOver').classList.remove('show');
+}
+
+/* ===== DECAY ===== */
+setInterval(function() {
+  if (isSleeping) {
+    state.energy = Math.min(100, state.energy + 0.4);
+    state.hunger = Math.max(0, state.hunger - 0.035);
+    state.happy  = Math.max(0, state.happy  - 0.025);
+  } else {
+    state.hunger = Math.max(0, state.hunger - 0.07);
+    state.happy  = Math.max(0, state.happy  - 0.055);
+    state.energy = Math.max(0, state.energy - 0.045);
+  }
+  if (Math.random() < 0.07 && !isSleeping) showSpeech(pickPhrase());
+  saveState();
+  updateUI();
+}, 2000);
+
+/* STARS */
+(function() {
+  const box = document.getElementById('stars');
+  for (let i = 0; i < 28; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random()*100 + '%';
+    s.style.top  = Math.random()*100 + '%';
+    s.style.animationDelay = (Math.random()*2) + 's';
+    box.appendChild(s);
+  }
+})();
+
+updateUI();
+setTimeout(function(){ showSpeech(pickPhrase()); }, 600);
+
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(e) {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 300) e.preventDefault();
+  lastTouchEnd = now;
+}, { passive: false });
+</script>
+</body>
+</html>
