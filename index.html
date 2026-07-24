@@ -1137,7 +1137,7 @@ function onCuddleMove(e) {
     lastCuddleY = t.clientY;
     state.cuddle = Math.min(100, state.cuddle + 1.8);
     state.happy = Math.min(100, state.happy + 0.6);
-    addXP(1);
+    addXP(0.1);
     haptic(6);
     const cont = petCont;
     const h = document.createElement('div');
