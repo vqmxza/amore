@@ -96,6 +96,35 @@
     color: #ff9ec0;
     text-shadow: 2px 2px 0 #5a1a3a;
   }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .reset-btn {
+    background: #fff;
+    border: 3px solid #ff6b9d;
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 #ff9ec0;
+    font-family: 'Press Start 2P', cursive;
+    color: #c2185b;
+    padding: 0;
+  }
+  body.night .reset-btn {
+    background: #2a1220;
+    color: #ffb3c6;
+    box-shadow: 2px 2px 0 #4a1a30;
+  }
+  .reset-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 #ff9ec0;
+  }
   .coins {
     background: #fff;
     border: 3px solid #ff6b9d;
@@ -757,7 +786,10 @@
 <header class="header">
   <div class="title-row">
     <div class="app-title">Emma 💖 Giulia</div>
-    <div class="coins">🪙 <span id="coins">150</span></div>
+    <div class="header-right">
+      <button class="reset-btn" id="btnReset" title="Reset">↺</button>
+      <div class="coins">🪙 <span id="coins">150</span></div>
+    </div>
   </div>
   <div class="stats">
     <div class="stat">
@@ -1088,6 +1120,20 @@ function pickPhrase() {
   if (state.cuddle < 30) return PHRASES.cuddle[Math.floor(Math.random()*PHRASES.cuddle.length)];
   return PHRASES.happy[Math.floor(Math.random()*PHRASES.happy.length)];
 }
+
+/* ===== RESET ===== */
+document.getElementById('btnReset').addEventListener('click', function() {
+  if (!confirm('Reset completo?\nTutti i progressi verranno cancellati.')) return;
+  haptic(30);
+  localStorage.removeItem('emmaGiuliaPet_v4');
+  state = Object.assign({}, DEFAULT);
+  isSleeping = false;
+  cuddleMode = false;
+  saveState();
+  updateUI();
+  showToast('Reset completato ↺');
+  showSpeech('Ricominciamo? 💕');
+});
 
 /* ===== PET CLICK ===== */
 document.getElementById('petContainer').addEventListener('click', function(e) {
